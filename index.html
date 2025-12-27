@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Спорт в РГПУ им. А. И. Герцена</title>
+    <link rel="icon" type="image/png" href="icon.png">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -11,6 +12,7 @@
             --herzen-blue: #005eb8;
             --herzen-light-blue: #3498db;
             --herzen-dark-blue: #004a99;
+            --herzen-pale-bg: #ebf6ff; /* Очень светлый синий для фонов инфо-блоков */
             
             --text-dark: #333333;
             --text-light: #ffffff;
@@ -72,12 +74,12 @@
             border-bottom: 2px solid rgba(255,255,255,0.8);
         }
 
-        /* Hero Section - ОБНОВЛЕННЫЕ СТИЛИ ДЛЯ СЛАЙДЕРА */
+        /* Hero Section */
         .hero {
             position: relative;
-            height: 60vh;
+            height: 70vh;
             min-height: 400px;
-            overflow: hidden; /* Обрезаем все, что вылезает */
+            overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -85,7 +87,6 @@
             color: white;
         }
 
-        /* Контейнер для слайдов (на заднем плане) */
         .hero-slideshow {
             position: absolute;
             top: 0;
@@ -95,7 +96,6 @@
             z-index: 0;
         }
 
-        /* Стиль для каждого слайда */
         .slide {
             position: absolute;
             top: 0;
@@ -104,15 +104,14 @@
             height: 100%;
             background-size: cover;
             background-position: center;
-            opacity: 0; /* Скрыт по умолчанию */
-            transition: opacity 1.5s ease-in-out; /* Плавное появление */
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
         }
 
         .slide.active {
-            opacity: 1; /* Виден */
+            opacity: 1;
         }
 
-        /* Синий фильтр поверх фото (чтобы текст читался) */
         .hero-overlay {
             position: absolute;
             top: 0;
@@ -123,7 +122,6 @@
             z-index: 1;
         }
 
-        /* Контент (текст) поверх всего */
         .hero-content {
             position: relative;
             z-index: 2;
@@ -163,7 +161,7 @@
             color: white;
         }
 
-        /* Sections & Teams */
+        /* Sections & Teams Container */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -220,15 +218,69 @@
             box-shadow: 0 4px 10px rgba(0, 94, 184, 0.3);
         }
 
+        /* Content Area Logic Update */
         .content-area {
             display: none;
             animation: fadeIn 0.4s ease-in-out;
+            /* Убрали display: grid отсюда, чтобы можно было вставлять инфо-блоки */
         }
 
         .content-area.active {
+            display: block; /* Теперь это блок, внутри которого лежит грид */
+        }
+
+        /* Grid Wrapper для карточек */
+        .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 25px;
+        }
+
+        /* Новый стиль для официальной ссылки */
+        .official-info-box {
+            background-color: var(--herzen-pale-bg);
+            border-left: 5px solid var(--herzen-blue);
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .official-info-text {
+            flex: 1;
+        }
+
+        .official-info-text h4 {
+            color: var(--herzen-blue);
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .official-info-text p {
+            font-size: 0.95rem;
+            color: #555;
+            margin: 0;
+        }
+
+        .official-btn {
+            background-color: var(--herzen-blue);
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: background 0.3s;
+            white-space: nowrap;
+        }
+
+        .official-btn:hover {
+            background-color: var(--herzen-light-blue);
         }
 
         @keyframes fadeIn {
@@ -376,6 +428,7 @@
             }
             .hero h1 { font-size: 2rem; }
             .section-title { font-size: 1.8rem; }
+            .official-info-box { flex-direction: column; text-align: center; }
             .card { padding: 20px; }
         }
     </style>
@@ -387,7 +440,7 @@
         <nav>
             <ul>
                 <li><a href="#sections">Секции</a></li>
-                <li><a href="#sections">Сборные</a></li>
+                <li><a href="#sections">Сборная</a></li>
                 <li><a href="#quiz">Пройти тест</a></li>
             </ul>
         </nav>
@@ -415,78 +468,100 @@
         <h2 class="section-title">Направления подготовки</h2>
         
         <div class="tabs">
-            <button class="tab-btn active" onclick="openTab('sections-tab')">Секции (Спортивно-Оздоровительный центр)</button>
-            <button class="tab-btn" onclick="openTab('teams-tab')">Сборные команды (Спортивный клуб "Пеликан")</button>
+            <button class="tab-btn active" onclick="openTab('sections-tab')">Секции (Оздоровительный центр)</button>
+            <button class="tab-btn" onclick="openTab('teams-tab')">Сборная (СК "Пеликан")</button>
         </div>
 
         <div id="sections-tab" class="content-area active">
-            <div class="card">
-                <h3>Атлетическая гимнастика</h3>
-                <p>Работа с весами, тренажеры, укрепление мышечного корсета и развитие силы.</p>
-                <a href="https://www.herzen.spb.ru/about/struct-uni/inst/i-sport/kafedry/kafedra-gimnastiki-i-fitnes-tekhnologiy/">Кафедра гимнастики и фитнес-технологий</a>
+            
+            <div class="official-info-box">
+                <div class="official-info-text">
+                    <h4>Спортивно-оздоровительный центр</h4>
+                    <p>Официальная информация о записи, расписании и работе центра на сайте университета.</p>
+                </div>
+                <a href="https://www.herzen.spb.ru/about/sportivnaya-deyatelnost/sportivno-ozdorovitelnyy-tsentr/" target="_blank" class="official-btn">Перейти на сайт центра →</a>
             </div>
-            <div class="card">
-                <h3>Аэробика</h3>
-                <p>Ритмичная гимнастика под музыку для развития выносливости и координации.</p>
-                <a href="https://www.herzen.spb.ru/about/struct-uni/inst/i-sport/kafedry/kafedra-gimnastiki-i-fitnes-tekhnologiy/">Кафедра гимнастики и фитнес-технологий</a>
-            </div>
-            <div class="card">
-                <h3>Йога</h3>
-                <p>Гармония тела и духа, развитие гибкости, статика и дыхательные практики.</p>
-                <a href="https://www.herzen.spb.ru/about/struct-uni/inst/i-sport/kafedry/kafedra-gimnastiki-i-fitnes-tekhnologiy/">Кафедра гимнастики и фитнес-технологий</a>
-            </div>
-            <div class="card">
-                <h3>Бальные танцы</h3>
-                <p>Эстетика движения, чувство ритма и парное взаимодействие на паркете.</p>
-                <a href="https://vk.com/rgpudance">Школа бальных танцев</a>
-            </div>
-            <div class="card">
-                <h3>Баскетбол</h3>
-                <p>Любительские тренировки. Командная игра, скорость и тактика.</p>
-                <a href="https://vk.com/herzen_basketball">Баскетбол</a>
-            </div>
-            <div class="card">
-                <h3>Волейбол</h3>
-                <p>Классическая командная игра. Развивает прыгучесть и реакцию.</p>
-                <a href="https://vk.com/herzen_volleyball">Волейбол</a>
-            </div>
-            <div class="card">
-                <h3>Настольный теннис</h3>
-                <p>Динамичная игра на реакцию и концентрацию внимания.</p>
-            </div>
-            <div class="card">
-                <h3>Каратэ</h3>
-                <p>Изучение базовой техники, ката и философия стиля.</p>
-                <a href="https://vk.com/herzenkarate">Каратэ</a>
-            </div>
-            <div class="card">
-                <h3>Пилатес</h3>
-                <p>Система упражнений для детальной проработки мышц и улучшения осанки.</p>
-            </div>
-            <div class="card">
-                <h3>Самооборона</h3>
-                <p>Прикладные навыки защиты, уверенность в себе и базовая борьба.</p>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <h3>Атлетическая гимнастика</h3>
+                    <p>Работа с весами, тренажеры, укрепление мышечного корсета и развитие силы.</p>
+                    <a href="https://www.herzen.spb.ru/about/struct-uni/inst/i-sport/kafedry/kafedra-gimnastiki-i-fitnes-tekhnologiy/">Кафедра гимнастики и фитнес-технологий</a>
+                </div>
+                <div class="card">
+                    <h3>Аэробика</h3>
+                    <p>Ритмичная гимнастика под музыку для развития выносливости и координации.</p>
+                    <a href="https://www.herzen.spb.ru/about/struct-uni/inst/i-sport/kafedry/kafedra-gimnastiki-i-fitnes-tekhnologiy/">Кафедра гимнастики и фитнес-технологий</a>
+                </div>
+                <div class="card">
+                    <h3>Йога</h3>
+                    <p>Гармония тела и духа, развитие гибкости, статика и дыхательные практики.</p>
+                    <a href="https://www.herzen.spb.ru/about/struct-uni/inst/i-sport/kafedry/kafedra-gimnastiki-i-fitnes-tekhnologiy/">Кафедра гимнастики и фитнес-технологий</a>
+                </div>
+                <div class="card">
+                    <h3>Бальные танцы</h3>
+                    <p>Эстетика движения, чувство ритма и парное взаимодействие на паркете.</p>
+                    <a href="https://vk.com/rgpudance">Школа бальных танцев</a>
+                </div>
+                <div class="card">
+                    <h3>Баскетбол</h3>
+                    <p>Любительские тренировки. Командная игра, скорость и тактика.</p>
+                    <a href="https://vk.com/herzen_basketball">Баскетбол</a>
+                </div>
+                <div class="card">
+                    <h3>Волейбол</h3>
+                    <p>Классическая командная игра. Развивает прыгучесть и реакцию.</p>
+                    <a href="https://vk.com/herzen_volleyball">Волейбол</a>
+                </div>
+                <div class="card">
+                    <h3>Настольный теннис</h3>
+                    <p>Динамичная игра на реакцию и концентрацию внимания.</p>
+                </div>
+                <div class="card">
+                    <h3>Каратэ</h3>
+                    <p>Изучение базовой техники, ката и философия стиля.</p>
+                    <a href="https://vk.com/herzenkarate">Каратэ</a>
+                </div>
+                <div class="card">
+                    <h3>Пилатес</h3>
+                    <p>Система упражнений для детальной проработки мышц и улучшения осанки.</p>
+                </div>
+                <div class="card">
+                    <h3>Самооборона</h3>
+                    <p>Прикладные навыки защиты, уверенность в себе и базовая борьба.</p>
+                </div>
             </div>
         </div>
 
         <div id="teams-tab" class="content-area">
-            <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Академическая гребля</h3><p>Элитный водный спорт. Участие в студенческой лиге.</p><a href="https://vk.com/herzen_rowing">Группа в ВК</a></div>
-            <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Баскетбол</h3><p>Мужская и женская сборные. Регулярные чемпионаты.</p><a href="https://vk.com/herzen_basketball">Группа в ВК</a></div>
-            <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Футбол</h3><p>Большой футбол и мини-футбол (футзал).</p><a href="https://vk.com/herzenfootballunion">Группа в ВК</a></div>
-            <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Хоккей</h3><p>Ледовые баталии за честь вуза в студенческой лиге.</p><a href="https://vk.com/hockey.herzen">Группа в ВК</a></div>
-            <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Чирлидинг</h3><p>Сложная акробатика, танцы и поддержка команд.</p><a href="https://vk.com/cheer_herz">Группа в ВК</a></div>
-            <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Художественная гимнастика</h3><p>Грация, мастерство и выступления на соревнованиях.</p><a href="https://vk.com/herzengym">Группа в ВК</a></div>
-            <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Волейбол (Сборная)</h3><p>Интенсивные тренировки и участие в межвузовских лигах.</p><a href="https://vk.com/herzen_volleyball">Группа в ВК</a></div>
-            <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Единоборства</h3><p>Самбо, дзюдо, вольная борьба. Профессиональный уровень.</p><a href="https://vk.com/sambo_in_herzen">Группа в ВК</a></div>
-            <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Легкая атлетика</h3><p>Бег на различные дистанции, прыжки, метание.</p><a href="https://vk.com/club199065318">Группа в ВК</a></div>
-            <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Силовые виды спорта</h3><p>Силовые виды спорта.</p><a href="https://vk.com/club222576111">Группа в ВК</a></div>
-            <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Мас-рестлинг</h3><p>Мас-рестлинг.</p><a href="https://vk.com/masrestlingspb">Группа в ВК</a></div>
-            <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Каратэ</h3><p>Подготовка и участие в соревнованиях уровня WKF и др.</p><a href="https://vk.com/herzenkarate">Группа в ВК</a></div>
-            <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Бадминтон</h3><p>Олимпийский вид спорта, требующий высокой скорости.</p><a href="https://vk.com/herzen_badm">Группа в ВК</a></div>
-            <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Бокс</h3><p>Классический английский бокс, спарринги и турниры.</p><a href="https://vk.com/boksgerzena">Группа в ВК</a></div>
-            <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Парусный спорт</h3><p>Для тех, кто любит море, ветер и тактику.</p><a href="https://vk.com/sailingherzen">Группа в ВК</a></div>
-            <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Скалолазание</h3><p>Покорение вертикалей на скалодроме и выездах.</p><a href="https://vk.com/club222835198">Группа в ВК</a></div>
-            <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Спортивный туризм</h3><p>Сложные походы, ориентирование и соревнования на природе.</p><a href="https://vk.com/ct_fenix">Группа в ВК</a></div>
+            
+            <div class="official-info-box">
+                <div class="official-info-text">
+                    <h4>Спортивный клуб «Пеликан»</h4>
+                    <p>Информация о сборных командах, достижениях и спортивных мероприятиях вуза.</p>
+                </div>
+                <a href="https://www.herzen.spb.ru/about/struct-uni/other-podr/sportivnyy-klub-pelikan/" target="_blank" class="official-btn">Страница спортклуба →</a>
+            </div>
+
+            <div class="cards-grid">
+                <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Академическая гребля</h3><p>Элитный водный спорт. Участие в студенческой лиге.</p><a href="https://vk.com/herzen_rowing">Группа в ВК</a></div>
+                <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Баскетбол</h3><p>Мужская и женская сборные. Регулярные чемпионаты.</p><a href="https://vk.com/herzen_basketball">Группа в ВК</a></div>
+                <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Футбол</h3><p>Большой футбол и мини-футбол (футзал).</p><a href="https://vk.com/herzenfootballunion">Группа в ВК</a></div>
+                <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Хоккей</h3><p>Ледовые баталии за честь вуза в студенческой лиге.</p><a href="https://vk.com/hockey.herzen">Группа в ВК</a></div>
+                <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Чирлидинг</h3><p>Сложная акробатика, танцы и поддержка команд.</p><a href="https://vk.com/cheer_herz">Группа в ВК</a></div>
+                <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Художественная гимнастика</h3><p>Грация, мастерство и выступления на соревнованиях.</p><a href="https://vk.com/herzengym">Группа в ВК</a></div>
+                <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Волейбол (Сборная)</h3><p>Интенсивные тренировки и участие в межвузовских лигах.</p><a href="https://vk.com/herzen_volleyball">Группа в ВК</a></div>
+                <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Единоборства</h3><p>Самбо, дзюдо, вольная борьба. Профессиональный уровень.</p><a href="https://vk.com/sambo_in_herzen">Группа в ВК</a></div>
+                <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Легкая атлетика</h3><p>Бег на различные дистанции, прыжки, метание.</p><a href="https://vk.com/club199065318">Группа в ВК</a></div>
+                <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Силовые виды спорта</h3><p>Силовые виды спорта.</p><a href="https://vk.com/club222576111">Группа в ВК</a></div>
+                <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Мас-рестлинг</h3><p>Мас-рестлинг.</p><a href="https://vk.com/masrestlingspb">Группа в ВК</a></div>
+                <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Каратэ</h3><p>Подготовка и участие в соревнованиях уровня WKF и др.</p><a href="https://vk.com/herzenkarate">Группа в ВК</a></div>
+                <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Бадминтон</h3><p>Олимпийский вид спорта, требующий высокой скорости.</p><a href="https://vk.com/herzen_badm">Группа в ВК</a></div>
+                <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Бокс</h3><p>Классический английский бокс, спарринги и турниры.</p><a href="https://vk.com/boksgerzena">Группа в ВК</a></div>
+                <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Парусный спорт</h3><p>Для тех, кто любит море, ветер и тактику.</p><a href="https://vk.com/sailingherzen">Группа в ВК</a></div>
+                <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Скалолазание</h3><p>Покорение вертикалей на скалодроме и выездах.</p><a href="https://vk.com/club222835198">Группа в ВК</a></div>
+                <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Спортивный туризм</h3><p>Сложные походы, ориентирование и соревнования на природе.</p><a href="https://vk.com/ct_fenix">Группа в ВК</a></div>
+            </div>
         </div>
     </div>
 
@@ -520,19 +595,11 @@
         const slides = document.querySelectorAll('.slide');
         
         function nextSlide() {
-            // Убираем класс active у текущего слайда
             slides[currentSlide].classList.remove('active');
-            
-            // Вычисляем индекс следующего (если дошли до конца, то 0)
             currentSlide = (currentSlide + 1) % slides.length;
-            
-            // Добавляем класс active следующему
             slides[currentSlide].classList.add('active');
         }
-
-        // Меняем слайд каждые 5000 миллисекунд (5 секунд)
         setInterval(nextSlide, 5000);
-
 
         // --- Logic for Tabs ---
         function openTab(tabId) {
@@ -547,7 +614,6 @@
         }
 
         // --- Logic for Quiz ---
-        
         const questions = [
             {
                 text: "Какая твоя главная цель?",
