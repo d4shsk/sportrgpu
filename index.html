@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Спорт в РГПУ им. А. И. Герцена</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* ПАЛИТРА */
+            --herzen-blue: #005eb8;
+            --herzen-light-blue: #3498db;
+            --herzen-dark-blue: #004a99;
+            
+            --text-dark: #333333;
+            --text-light: #ffffff;
+            --bg-gray: #f0f2f5;
+            --card-shadow: 0 4px 8px rgba(0, 94, 184, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: #fff;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--herzen-blue);
+            color: var(--text-light);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.05rem;
+            transition: color 0.3s;
+            padding-bottom: 5px;
+            border-bottom: 2px solid transparent;
+        }
+
+        nav a:hover {
+            color: rgba(255,255,255,0.8);
+            border-bottom: 2px solid rgba(255,255,255,0.8);
+        }
+
+        /* Hero Section - ОБНОВЛЕННЫЕ СТИЛИ ДЛЯ СЛАЙДЕРА */
+        .hero {
+            position: relative;
+            height: 60vh;
+            min-height: 400px;
+            overflow: hidden; /* Обрезаем все, что вылезает */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+
+        /* Контейнер для слайдов (на заднем плане) */
+        .hero-slideshow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        /* Стиль для каждого слайда */
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0; /* Скрыт по умолчанию */
+            transition: opacity 1.5s ease-in-out; /* Плавное появление */
+        }
+
+        .slide.active {
+            opacity: 1; /* Виден */
+        }
+
+        /* Синий фильтр поверх фото (чтобы текст читался) */
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0, 94, 184, 0.7), rgba(0, 74, 153, 0.85));
+            z-index: 1;
+        }
+
+        /* Контент (текст) поверх всего */
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto 2.5rem auto;
+            opacity: 0.95;
+        }
+
+        .btn {
+            padding: 12px 35px;
+            background-color: white;
+            color: var(--herzen-blue);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: 2px solid white;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background-color: var(--herzen-light-blue);
+            border-color: var(--herzen-light-blue);
+            color: white;
+        }
+
+        /* Sections & Teams */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            color: var(--herzen-blue);
+            margin-bottom: 50px;
+            font-size: 2.2rem;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 4px;
+            background-color: var(--herzen-light-blue);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 12px 25px;
+            background: #e9ecef;
+            color: var(--text-dark);
+            border: none;
+            cursor: pointer;
+            font-size: 1.05rem;
+            font-weight: 500;
+            border-radius: 30px;
+            transition: 0.3s;
+        }
+
+        .tab-btn:hover {
+            background: #dde1e6;
+        }
+
+        .tab-btn.active {
+            background-color: var(--herzen-blue);
+            color: white;
+            box-shadow: 0 4px 10px rgba(0, 94, 184, 0.3);
+        }
+
+        .content-area {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .content-area.active {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Cards */
+        .card {
+            background: white;
+            border: 1px solid #e1e5eb;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s;
+            border-top: 5px solid var(--herzen-blue);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 8px 15px rgba(0, 94, 184, 0.15);
+            border-top-color: var(--herzen-light-blue);
+        }
+
+        .card h3 {
+            color: var(--herzen-blue);
+            margin-bottom: 12px;
+            font-size: 1.3rem;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: #555;
+            flex-grow: 1;
+            margin-bottom: 15px;
+        }
+
+        .card a {
+            text-decoration: none;
+            color: var(--herzen-blue);
+            font-weight: 500;
+            font-size: 0.9rem;
+            margin-top: auto;
+        }
+        
+        .card a:hover {
+            text-decoration: underline;
+        }
+
+        /* Quiz Section */
+        .quiz-section {
+            background-color: var(--bg-gray);
+            padding: 80px 20px;
+            text-align: center;
+            border-top: 1px solid #e1e5eb;
+        }
+
+        .quiz-container {
+            background: white;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 94, 184, 0.1);
+            border: 1px solid #e1e5eb;
+        }
+
+        .question {
+            font-size: 1.4rem;
+            margin-bottom: 30px;
+            font-weight: 500;
+            color: var(--herzen-blue);
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option-btn {
+            padding: 18px 25px;
+            border: 2px solid #e9ecef;
+            background: white;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: 0.2s;
+            text-align: left;
+            font-size: 1.05rem;
+            font-family: inherit;
+            color: var(--text-dark);
+        }
+
+        .option-btn:hover {
+            background-color: #f8faff;
+            border-color: var(--herzen-light-blue);
+            color: var(--herzen-blue);
+            box-shadow: 0 2px 5px rgba(0,94,184,0.1);
+        }
+
+        #result-area {
+            display: none;
+        }
+
+        #result-title {
+            color: var(--herzen-blue);
+            font-size: 2rem;
+            margin: 15px 0;
+        }
+        
+        #result-desc {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        footer {
+            background-color: var(--herzen-blue);
+            color: rgba(255,255,255,0.9);
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 0.95rem;
+        }
+        
+        footer p.copy {
+             font-weight: 500;
+             margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+            }
+            nav ul {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .hero h1 { font-size: 2rem; }
+            .section-title { font-size: 1.8rem; }
+            .card { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">РГПУ им. А. И. Герцена | Спорт</div>
+        <nav>
+            <ul>
+                <li><a href="#sections">Секции</a></li>
+                <li><a href="#sections">Сборные</a></li>
+                <li><a href="#quiz">Пройти тест</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-slideshow">
+            <div class="slide active" style="background-image: url('photo1.jpg');"></div>
+            <div class="slide" style="background-image: url('photo2.jpg');"></div>
+            <div class="slide" style="background-image: url('photo3.jpg');"></div>
+            <div class="slide" style="background-image: url('photo4.jpg');"></div>
+            <div class="slide" style="background-image: url('photo5.jpg');"></div>
+        </div>
+
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+            <h1>Спортивная жизнь университета</h1>
+            <p>Найди своё призвание, укрепи здоровье и защищай честь вуза на соревнованиях.</p>
+            <a href="#quiz" class="btn">Подобрать секцию</a>
+        </div>
+    </section>
+
+    <div class="container" id="sections">
+        <h2 class="section-title">Направления подготовки</h2>
+        
+        <div class="tabs">
+            <button class="tab-btn active" onclick="openTab('sections-tab')">Секции (Спортивно-Оздоровительный центр)</button>
+            <button class="tab-btn" onclick="openTab('teams-tab')">Сборные команды (Спортивный клуб "Пеликан")</button>
+        </div>
+
+        <div id="sections-tab" class="content-area active">
+            <div class="card">
+                <h3>Атлетическая гимнастика</h3>
+                <p>Работа с весами, тренажеры, укрепление мышечного корсета и развитие силы.</p>
+                <a href="https://www.herzen.spb.ru/about/struct-uni/inst/i-sport/kafedry/kafedra-gimnastiki-i-fitnes-tekhnologiy/">Кафедра гимнастики и фитнес-технологий</a>
+            </div>
+            <div class="card">
+                <h3>Аэробика</h3>
+                <p>Ритмичная гимнастика под музыку для развития выносливости и координации.</p>
+                <a href="https://www.herzen.spb.ru/about/struct-uni/inst/i-sport/kafedry/kafedra-gimnastiki-i-fitnes-tekhnologiy/">Кафедра гимнастики и фитнес-технологий</a>
+            </div>
+            <div class="card">
+                <h3>Йога</h3>
+                <p>Гармония тела и духа, развитие гибкости, статика и дыхательные практики.</p>
+                <a href="https://www.herzen.spb.ru/about/struct-uni/inst/i-sport/kafedry/kafedra-gimnastiki-i-fitnes-tekhnologiy/">Кафедра гимнастики и фитнес-технологий</a>
+            </div>
+            <div class="card">
+                <h3>Бальные танцы</h3>
+                <p>Эстетика движения, чувство ритма и парное взаимодействие на паркете.</p>
+                <a href="https://vk.com/rgpudance">Школа бальных танцев</a>
+            </div>
+            <div class="card">
+                <h3>Баскетбол</h3>
+                <p>Любительские тренировки. Командная игра, скорость и тактика.</p>
+                <a href="https://vk.com/herzen_basketball">Баскетбол</a>
+            </div>
+            <div class="card">
+                <h3>Волейбол</h3>
+                <p>Классическая командная игра. Развивает прыгучесть и реакцию.</p>
+                <a href="https://vk.com/herzen_volleyball">Волейбол</a>
+            </div>
+            <div class="card">
+                <h3>Настольный теннис</h3>
+                <p>Динамичная игра на реакцию и концентрацию внимания.</p>
+            </div>
+            <div class="card">
+                <h3>Каратэ</h3>
+                <p>Изучение базовой техники, ката и философия стиля.</p>
+                <a href="https://vk.com/herzenkarate">Каратэ</a>
+            </div>
+            <div class="card">
+                <h3>Пилатес</h3>
+                <p>Система упражнений для детальной проработки мышц и улучшения осанки.</p>
+            </div>
+            <div class="card">
+                <h3>Самооборона</h3>
+                <p>Прикладные навыки защиты, уверенность в себе и базовая борьба.</p>
+            </div>
+        </div>
+
+        <div id="teams-tab" class="content-area">
+            <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Академическая гребля</h3><p>Элитный водный спорт. Участие в студенческой лиге.</p><a href="https://vk.com/herzen_rowing">Группа в ВК</a></div>
+            <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Баскетбол</h3><p>Мужская и женская сборные. Регулярные чемпионаты.</p><a href="https://vk.com/herzen_basketball">Группа в ВК</a></div>
+            <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Футбол</h3><p>Большой футбол и мини-футбол (футзал).</p><a href="https://vk.com/herzenfootballunion">Группа в ВК</a></div>
+            <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Хоккей</h3><p>Ледовые баталии за честь вуза в студенческой лиге.</p><a href="https://vk.com/hockey.herzen">Группа в ВК</a></div>
+            <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Чирлидинг</h3><p>Сложная акробатика, танцы и поддержка команд.</p><a href="https://vk.com/cheer_herz">Группа в ВК</a></div>
+            <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Художественная гимнастика</h3><p>Грация, мастерство и выступления на соревнованиях.</p><a href="https://vk.com/herzengym">Группа в ВК</a></div>
+            <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Волейбол (Сборная)</h3><p>Интенсивные тренировки и участие в межвузовских лигах.</p><a href="https://vk.com/herzen_volleyball">Группа в ВК</a></div>
+            <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Единоборства</h3><p>Самбо, дзюдо, вольная борьба. Профессиональный уровень.</p><a href="https://vk.com/sambo_in_herzen">Группа в ВК</a></div>
+            <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Легкая атлетика</h3><p>Бег на различные дистанции, прыжки, метание.</p><a href="https://vk.com/club199065318">Группа в ВК</a></div>
+            <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Силовые виды спорта</h3><p>Силовые виды спорта.</p><a href="https://vk.com/club222576111">Группа в ВК</a></div>
+            <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Мас-рестлинг</h3><p>Мас-рестлинг.</p><a href="https://vk.com/masrestlingspb">Группа в ВК</a></div>
+            <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Каратэ</h3><p>Подготовка и участие в соревнованиях уровня WKF и др.</p><a href="https://vk.com/herzenkarate">Группа в ВК</a></div>
+            <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Бадминтон</h3><p>Олимпийский вид спорта, требующий высокой скорости.</p><a href="https://vk.com/herzen_badm">Группа в ВК</a></div>
+            <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Бокс</h3><p>Классический английский бокс, спарринги и турниры.</p><a href="https://vk.com/boksgerzena">Группа в ВК</a></div>
+            <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Парусный спорт</h3><p>Для тех, кто любит море, ветер и тактику.</p><a href="https://vk.com/sailingherzen">Группа в ВК</a></div>
+            <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Скалолазание</h3><p>Покорение вертикалей на скалодроме и выездах.</p><a href="https://vk.com/club222835198">Группа в ВК</a></div>
+            <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Спортивный туризм</h3><p>Сложные походы, ориентирование и соревнования на природе.</p><a href="https://vk.com/ct_fenix">Группа в ВК</a></div>
+        </div>
+    </div>
+
+    <div class="quiz-section" id="quiz">
+        <h2 class="section-title">Какая секция тебе подходит?</h2>
+        <div class="quiz-container">
+            <div id="quiz-question-area">
+                <div class="question" id="question-text">Вопрос 1</div>
+                <div class="options" id="options-area">
+                    </div>
+            </div>
+            
+            <div id="result-area">
+                <h3>Твой идеальный выбор:</h3>
+                <h2 id="result-title">Название секции</h2>
+                <p id="result-desc">Описание</p>
+                <br>
+                <button class="btn" onclick="restartQuiz()" style="background:var(--herzen-blue); color:white; border:none; padding: 15px 40px;">Пройти заново</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p class="copy">© 2025 РГПУ им. А. И. Герцена.</p>
+        <p style="opacity: 0.7;">Санкт-Петербург, наб. реки Мойки, 48</p>
+    </footer>
+
+    <script>
+        // --- Logic for Slideshow ---
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        
+        function nextSlide() {
+            // Убираем класс active у текущего слайда
+            slides[currentSlide].classList.remove('active');
+            
+            // Вычисляем индекс следующего (если дошли до конца, то 0)
+            currentSlide = (currentSlide + 1) % slides.length;
+            
+            // Добавляем класс active следующему
+            slides[currentSlide].classList.add('active');
+        }
+
+        // Меняем слайд каждые 5000 миллисекунд (5 секунд)
+        setInterval(nextSlide, 5000);
+
+
+        // --- Logic for Tabs ---
+        function openTab(tabId) {
+            const contents = document.querySelectorAll('.content-area');
+            contents.forEach(div => div.classList.remove('active'));
+            
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            document.getElementById(tabId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // --- Logic for Quiz ---
+        
+        const questions = [
+            {
+                text: "Какая твоя главная цель?",
+                answers: [
+                    { text: "Стать сильнее и накачать мышцы", scores: { strength: 3, fight: 1 } },
+                    { text: "Гибкость, спокойствие и здоровье спины", scores: { relax: 3 } },
+                    { text: "Научиться постоять за себя, дисциплина", scores: { fight: 3 } },
+                    { text: "Весело провести время, пообщаться и подвигаться", scores: { game: 2, dance: 2 } }
+                ]
+            },
+            {
+                text: "Как ты предпочитаешь заниматься?",
+                answers: [
+                    { text: "В команде, люблю чувство локтя", scores: { game: 3 } },
+                    { text: "Индивидуально, наушники в уши и работать", scores: { strength: 2, relax: 2 } },
+                    { text: "В паре или группе, но отвечать за свой результат", scores: { fight: 2, dance: 2, pingpong: 1 } }
+                ]
+            },
+            {
+                text: "Твой уровень активности и темперамент?",
+                answers: [
+                    { text: "Взрывной! Люблю бегать, прыгать, выплескивать энергию", scores: { game: 2, dance: 2 } },
+                    { text: "Люблю концентрацию, технику и быструю реакцию", scores: { fight: 2, pingpong: 3 } },
+                    { text: "Спокойный. Мне нравятся размеренные, глубокие нагрузки", scores: { relax: 3, strength: 1 } }
+                ]
+            }
+        ];
+
+        let currentQuestion = 0;
+        let scores = { strength: 0, relax: 0, fight: 0, game: 0, dance: 0, pingpong: 0 };
+
+        function loadQuestion() {
+            const q = questions[currentQuestion];
+            document.getElementById('question-text').innerText = q.text;
+            const opts = document.getElementById('options-area');
+            opts.innerHTML = '';
+
+            q.answers.forEach(ans => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.innerText = ans.text;
+                btn.onclick = () => handleAnswer(ans.scores);
+                opts.appendChild(btn);
+            });
+        }
+
+        function handleAnswer(points) {
+            for (let key in points) {
+                if (scores[key] !== undefined) scores[key] += points[key];
+                else scores[key] = points[key];
+            }
+            currentQuestion++;
+            if (currentQuestion < questions.length) loadQuestion();
+            else showResult();
+        }
+
+        function showResult() {
+            document.getElementById('quiz-question-area').style.display = 'none';
+            document.getElementById('result-area').style.display = 'block';
+            let maxKey = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+            let resultTitle = "", resultDesc = "";
+
+            switch(maxKey) {
+                case 'strength': resultTitle = "Атлетическая гимнастика"; resultDesc = "Тебе подойдет работа с весами в тренажерном зале. Это укрепит тело и дух."; break;
+                case 'relax': resultTitle = "Йога или Пилатес"; resultDesc = "Твоему телу нужна гармония, гибкость и качественная проработка глубоких мышц."; break;
+                case 'fight': resultTitle = "Каратэ или Самооборона"; resultDesc = "Ты готов к вызовам! Единоборства помогут развить дисциплину, реакцию и уверенность."; break;
+                case 'game': resultTitle = "Баскетбол или Волейбол"; resultDesc = "Ты командный игрок! Игровые виды спорта принесут тебе максимум драйва и удовольствия."; break;
+                case 'dance': resultTitle = "Бальные танцы или Аэробика"; resultDesc = "Движение — это жизнь. Чувство ритма и музыка помогут тебе держать себя в отличной форме."; break;
+                case 'pingpong': resultTitle = "Настольный теннис"; resultDesc = "Скорость реакции, концентрация и азарт — вот что тебе нужно."; break;
+                default: resultTitle = "Атлетическая гимнастика"; resultDesc = "Универсальный выбор для начала спортивного пути в Герцена!";
+            }
+            document.getElementById('result-title').innerText = resultTitle;
+            document.getElementById('result-desc').innerText = resultDesc;
+        }
+
+        function restartQuiz() {
+            currentQuestion = 0;
+            scores = { strength: 0, relax: 0, fight: 0, game: 0, dance: 0, pingpong: 0 };
+            document.getElementById('quiz-question-area').style.display = 'block';
+            document.getElementById('result-area').style.display = 'none';
+            loadQuestion();
+        }
+
+        loadQuestion();
+    </script>
+</body>
+</html>
