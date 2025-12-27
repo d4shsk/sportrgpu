@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Спорт в РГПУ им. А. И. Герцена</title>
-    <link rel="icon" type="image/png" href="icon.png">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -12,7 +11,7 @@
             --herzen-blue: #005eb8;
             --herzen-light-blue: #3498db;
             --herzen-dark-blue: #004a99;
-            --herzen-pale-bg: #ebf6ff; /* Очень светлый синий для фонов инфо-блоков */
+            --herzen-pale-bg: #ebf6ff;
             
             --text-dark: #333333;
             --text-light: #ffffff;
@@ -31,6 +30,7 @@
             line-height: 1.6;
             color: var(--text-dark);
             background-color: #fff;
+            scroll-behavior: smooth;
         }
 
         /* Header */
@@ -67,6 +67,7 @@
             transition: color 0.3s;
             padding-bottom: 5px;
             border-bottom: 2px solid transparent;
+            cursor: pointer;
         }
 
         nav a:hover {
@@ -161,11 +162,12 @@
             color: white;
         }
 
-        /* Sections & Teams Container */
+        /* Container */
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 80px 20px;
+            scroll-margin-top: 80px; 
         }
 
         .section-title {
@@ -218,25 +220,21 @@
             box-shadow: 0 4px 10px rgba(0, 94, 184, 0.3);
         }
 
-        /* Content Area Logic Update */
         .content-area {
             display: none;
             animation: fadeIn 0.4s ease-in-out;
-            /* Убрали display: grid отсюда, чтобы можно было вставлять инфо-блоки */
         }
 
         .content-area.active {
-            display: block; /* Теперь это блок, внутри которого лежит грид */
+            display: block;
         }
 
-        /* Grid Wrapper для карточек */
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 25px;
         }
 
-        /* Новый стиль для официальной ссылки */
         .official-info-box {
             background-color: var(--herzen-pale-bg);
             border-left: 5px solid var(--herzen-blue);
@@ -288,7 +286,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Cards */
         .card {
             background: white;
             border: 1px solid #e1e5eb;
@@ -330,6 +327,22 @@
         
         .card a:hover {
             text-decoration: underline;
+        }
+
+        /* --- STYLES FOR MAP SECTION --- */
+        .map-section {
+            padding-bottom: 60px;
+            /* Используем отступ для красоты */
+        }
+        
+        .map-wrapper {
+            width: 100%;
+            max-width: 1000px; /* Ограничиваем ширину карты на больших экранах */
+            margin: 0 auto;
+            border-radius: 16px;
+            overflow: hidden; /* Скругляем углы самой карты */
+            box-shadow: 0 10px 25px rgba(0, 94, 184, 0.1);
+            border: 1px solid #e1e5eb;
         }
 
         /* Quiz Section */
@@ -439,9 +452,9 @@
         <div class="logo">РГПУ им. А. И. Герцена | Спорт</div>
         <nav>
             <ul>
-                <li><a href="#sections">Секции</a></li>
-                <li><a href="#sections">Сборная</a></li>
-                <li><a href="#quiz">Пройти тест</a></li>
+                <li><a href="#sections" onclick="openTab('sections-tab')">Секции</a></li>
+                <li><a href="#sections" onclick="openTab('teams-tab')">Сборные</a></li>
+                <li><a href="#map">Карта</a></li> <li><a href="#quiz">Пройти тест</a></li>
             </ul>
         </nav>
     </header>
@@ -468,8 +481,8 @@
         <h2 class="section-title">Направления подготовки</h2>
         
         <div class="tabs">
-            <button class="tab-btn active" onclick="openTab('sections-tab')">Секции (Оздоровительный центр)</button>
-            <button class="tab-btn" onclick="openTab('teams-tab')">Сборная (СК "Пеликан")</button>
+            <button id="btn-sections" class="tab-btn active" onclick="openTab('sections-tab')">Секции (Оздоровительный центр)</button>
+            <button id="btn-teams" class="tab-btn" onclick="openTab('teams-tab')">Сборные команды (СК "Пеликан")</button>
         </div>
 
         <div id="sections-tab" class="content-area active">
@@ -486,49 +499,52 @@
                 <div class="card">
                     <h3>Атлетическая гимнастика</h3>
                     <p>Работа с весами, тренажеры, укрепление мышечного корсета и развитие силы.</p>
-                    <a href="https://www.herzen.spb.ru/about/struct-uni/inst/i-sport/kafedry/kafedra-gimnastiki-i-fitnes-tekhnologiy/">Кафедра гимнастики и фитнес-технологий</a>
+                    <a href="mailto:ck_pelikan_rgpu@mail.ru">ck_pelikan_rgpu@mail.ru</a>
                 </div>
                 <div class="card">
                     <h3>Аэробика</h3>
                     <p>Ритмичная гимнастика под музыку для развития выносливости и координации.</p>
-                    <a href="https://www.herzen.spb.ru/about/struct-uni/inst/i-sport/kafedry/kafedra-gimnastiki-i-fitnes-tekhnologiy/">Кафедра гимнастики и фитнес-технологий</a>
+                    <a href="mailto:ck_pelikan_rgpu@mail.ru">ck_pelikan_rgpu@mail.ru</a>
                 </div>
                 <div class="card">
                     <h3>Йога</h3>
                     <p>Гармония тела и духа, развитие гибкости, статика и дыхательные практики.</p>
-                    <a href="https://www.herzen.spb.ru/about/struct-uni/inst/i-sport/kafedry/kafedra-gimnastiki-i-fitnes-tekhnologiy/">Кафедра гимнастики и фитнес-технологий</a>
+                    <a href="mailto:ck_pelikan_rgpu@mail.ru">ck_pelikan_rgpu@mail.ru</a>
                 </div>
                 <div class="card">
                     <h3>Бальные танцы</h3>
                     <p>Эстетика движения, чувство ритма и парное взаимодействие на паркете.</p>
-                    <a href="https://vk.com/rgpudance">Школа бальных танцев</a>
+                    <a href="mailto:ck_pelikan_rgpu@mail.ru">ck_pelikan_rgpu@mail.ru</a>
                 </div>
                 <div class="card">
                     <h3>Баскетбол</h3>
                     <p>Любительские тренировки. Командная игра, скорость и тактика.</p>
-                    <a href="https://vk.com/herzen_basketball">Баскетбол</a>
+                    <a href="mailto:ck_pelikan_rgpu@mail.ru">ck_pelikan_rgpu@mail.ru</a>
                 </div>
                 <div class="card">
                     <h3>Волейбол</h3>
                     <p>Классическая командная игра. Развивает прыгучесть и реакцию.</p>
-                    <a href="https://vk.com/herzen_volleyball">Волейбол</a>
+                    <a href="mailto:ck_pelikan_rgpu@mail.ru">ck_pelikan_rgpu@mail.ru</a>
                 </div>
                 <div class="card">
                     <h3>Настольный теннис</h3>
                     <p>Динамичная игра на реакцию и концентрацию внимания.</p>
+                    <a href="mailto:ck_pelikan_rgpu@mail.ru">ck_pelikan_rgpu@mail.ru</a>
                 </div>
                 <div class="card">
                     <h3>Каратэ</h3>
                     <p>Изучение базовой техники, ката и философия стиля.</p>
-                    <a href="https://vk.com/herzenkarate">Каратэ</a>
+                    <a href="mailto:ck_pelikan_rgpu@mail.ru">ck_pelikan_rgpu@mail.ru</a>
                 </div>
                 <div class="card">
                     <h3>Пилатес</h3>
                     <p>Система упражнений для детальной проработки мышц и улучшения осанки.</p>
+                    <a href="mailto:ck_pelikan_rgpu@mail.ru">ck_pelikan_rgpu@mail.ru</a>
                 </div>
                 <div class="card">
                     <h3>Самооборона</h3>
                     <p>Прикладные навыки защиты, уверенность в себе и базовая борьба.</p>
+                    <a href="mailto:ck_pelikan_rgpu@mail.ru">ck_pelikan_rgpu@mail.ru</a>
                 </div>
             </div>
         </div>
@@ -562,6 +578,13 @@
                 <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Скалолазание</h3><p>Покорение вертикалей на скалодроме и выездах.</p><a href="https://vk.com/club222835198">Группа в ВК</a></div>
                 <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Спортивный туризм</h3><p>Сложные походы, ориентирование и соревнования на природе.</p><a href="https://vk.com/ct_fenix">Группа в ВК</a></div>
             </div>
+        </div>
+    </div>
+
+    <div class="container map-section" id="map">
+        <h2 class="section-title">Спортивные объекты</h2>
+        <div class="map-wrapper">
+            <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Aa3f831f0a1b6446c652242ac9fd0c26b021755bc68fcdb382603b2b987c2af68&amp;width=100%25&amp;height=459&amp;lang=ru_RU&amp;scroll=true"></script>
         </div>
     </div>
 
@@ -610,7 +633,12 @@
             buttons.forEach(btn => btn.classList.remove('active'));
 
             document.getElementById(tabId).classList.add('active');
-            event.target.classList.add('active');
+
+            if (tabId === 'sections-tab') {
+                document.getElementById('btn-sections').classList.add('active');
+            } else if (tabId === 'teams-tab') {
+                document.getElementById('btn-teams').classList.add('active');
+            }
         }
 
         // --- Logic for Quiz ---
