@@ -317,6 +317,21 @@
             margin-bottom: 15px;
         }
 
+        /* Стиль для имени тренера */
+        .card .trainer-name {
+            font-weight: 500;
+            color: #333;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        /* Стиль для телефона */
+        .card .trainer-phone {
+            font-weight: 700;
+            color: var(--herzen-dark-blue);
+            display: block;
+        }
+
         .card a {
             text-decoration: none;
             color: var(--herzen-blue);
@@ -332,15 +347,14 @@
         /* --- STYLES FOR MAP SECTION --- */
         .map-section {
             padding-bottom: 60px;
-            /* Используем отступ для красоты */
         }
         
         .map-wrapper {
             width: 100%;
-            max-width: 1000px; /* Ограничиваем ширину карты на больших экранах */
+            max-width: 1000px;
             margin: 0 auto;
             border-radius: 16px;
-            overflow: hidden; /* Скругляем углы самой карты */
+            overflow: hidden;
             box-shadow: 0 10px 25px rgba(0, 94, 184, 0.1);
             border: 1px solid #e1e5eb;
         }
@@ -454,7 +468,8 @@
             <ul>
                 <li><a href="#sections" onclick="openTab('sections-tab')">Секции</a></li>
                 <li><a href="#sections" onclick="openTab('teams-tab')">Сборные</a></li>
-                <li><a href="#map">Карта</a></li> <li><a href="#quiz">Пройти тест</a></li>
+                <li><a href="#map">Карта</a></li>
+                <li><a href="#quiz">Пройти тест</a></li>
             </ul>
         </nav>
     </header>
@@ -462,10 +477,12 @@
     <section class="hero">
         <div class="hero-slideshow">
             <div class="slide active" style="background-image: url('photo1.jpg');"></div>
+            <div class="slide" style="background-image: url('photo7.jpg');"></div>
             <div class="slide" style="background-image: url('photo2.jpg');"></div>
             <div class="slide" style="background-image: url('photo3.jpg');"></div>
             <div class="slide" style="background-image: url('photo4.jpg');"></div>
             <div class="slide" style="background-image: url('photo5.jpg');"></div>
+            <div class="slide" style="background-image: url('photo6.jpg');"></div>
         </div>
 
         <div class="hero-overlay"></div>
@@ -518,7 +535,7 @@
                 </div>
                 <div class="card">
                     <h3>Баскетбол</h3>
-                    <p>Любительские тренировки. Командная игра, скорость и тактика.</p>
+                    <p>Командная игра, скорость и тактика.</p>
                     <a href="mailto:ck_pelikan_rgpu@mail.ru">ck_pelikan_rgpu@mail.ru</a>
                 </div>
                 <div class="card">
@@ -533,7 +550,7 @@
                 </div>
                 <div class="card">
                     <h3>Каратэ</h3>
-                    <p>Изучение базовой техники, ката и философия стиля.</p>
+                    <p>Секция каратэ киокусинкай в РГПУ им. Герцена работает с 2002 года.</p>
                     <a href="mailto:ck_pelikan_rgpu@mail.ru">ck_pelikan_rgpu@mail.ru</a>
                 </div>
                 <div class="card">
@@ -560,23 +577,323 @@
             </div>
 
             <div class="cards-grid">
-                <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Академическая гребля</h3><p>Элитный водный спорт. Участие в студенческой лиге.</p><a href="https://vk.com/herzen_rowing">Группа в ВК</a></div>
-                <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Баскетбол</h3><p>Мужская и женская сборные. Регулярные чемпионаты.</p><a href="https://vk.com/herzen_basketball">Группа в ВК</a></div>
-                <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Футбол</h3><p>Большой футбол и мини-футбол (футзал).</p><a href="https://vk.com/herzenfootballunion">Группа в ВК</a></div>
-                <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Хоккей</h3><p>Ледовые баталии за честь вуза в студенческой лиге.</p><a href="https://vk.com/hockey.herzen">Группа в ВК</a></div>
-                <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Чирлидинг</h3><p>Сложная акробатика, танцы и поддержка команд.</p><a href="https://vk.com/cheer_herz">Группа в ВК</a></div>
-                <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Художественная гимнастика</h3><p>Грация, мастерство и выступления на соревнованиях.</p><a href="https://vk.com/herzengym">Группа в ВК</a></div>
-                <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Волейбол (Сборная)</h3><p>Интенсивные тренировки и участие в межвузовских лигах.</p><a href="https://vk.com/herzen_volleyball">Группа в ВК</a></div>
-                <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Единоборства</h3><p>Самбо, дзюдо, вольная борьба. Профессиональный уровень.</p><a href="https://vk.com/sambo_in_herzen">Группа в ВК</a></div>
-                <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Легкая атлетика</h3><p>Бег на различные дистанции, прыжки, метание.</p><a href="https://vk.com/club199065318">Группа в ВК</a></div>
-                <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Силовые виды спорта</h3><p>Силовые виды спорта.</p><a href="https://vk.com/club222576111">Группа в ВК</a></div>
-                <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Мас-рестлинг</h3><p>Мас-рестлинг.</p><a href="https://vk.com/masrestlingspb">Группа в ВК</a></div>
-                <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Каратэ</h3><p>Подготовка и участие в соревнованиях уровня WKF и др.</p><a href="https://vk.com/herzenkarate">Группа в ВК</a></div>
-                <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Бадминтон</h3><p>Олимпийский вид спорта, требующий высокой скорости.</p><a href="https://vk.com/herzen_badm">Группа в ВК</a></div>
-                <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Бокс</h3><p>Классический английский бокс, спарринги и турниры.</p><a href="https://vk.com/boksgerzena">Группа в ВК</a></div>
-                <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Парусный спорт</h3><p>Для тех, кто любит море, ветер и тактику.</p><a href="https://vk.com/sailingherzen">Группа в ВК</a></div>
-                <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Скалолазание</h3><p>Покорение вертикалей на скалодроме и выездах.</p><a href="https://vk.com/club222835198">Группа в ВК</a></div>
-                <div class="card" style="border-top-color: var(--herzen-dark-blue);"><h3>Спортивный туризм</h3><p>Сложные походы, ориентирование и соревнования на природе.</p><a href="https://vk.com/ct_fenix">Группа в ВК</a></div>
+                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
+                    <h3>Баскетбол (Мужская сборная)</h3>
+                    <p>
+                        <span class="trainer-name">Полева Ольга Михайловна</span>
+                        <span class="trainer-phone">+7 960 766 16 26</span>
+                    </p>
+                    <a href="https://vk.com/herzen_basketball">Группа в ВК</a>
+                </div>
+                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
+                    <h3>Баскетбол (Женская сборная)</h3>
+                    <p>
+                        <span class="trainer-name">Никитина Елена Сергеевна</span>
+                        <span class="trainer-phone">+7 921 787 72 191</span>
+                    </p>
+                    <a href="https://vk.com/herzen_basketball">Группа в ВК</a>
+                </div>
+                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
+                    <h3>Баскетбол (Менеджер)</h3>
+                    <p>
+                        <span class="trainer-name">Жукова Мария Александровна</span>
+                        <span class="trainer-phone">+7 918 219 70 37</span>
+                    </p>
+                    <a href="https://vk.com/herzen_basketball">Группа в ВК</a>
+                </div>
+
+                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
+                    <h3>Футбол (Женская сборная)</h3>
+                    <p>
+                        <span class="trainer-name">Григорьев Алексей Владимирович</span>
+                        <span class="trainer-phone">+7 981 131 08 94</span>
+                    </p>
+                    <a href="https://vk.com/herzenfootballunion">Группа в ВК</a>
+                </div>
+                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
+                    <h3>Футбол (Мужская сборная)</h3>
+                    <p>
+                        <span class="trainer-name">Мызин Астемир Ратмирович</span>
+                        <span class="trainer-phone">+7 911 821 29 37</span>
+                    </p>
+                    <a href="https://vk.com/herzenfootballunion">Группа в ВК</a>
+                </div>
+
+                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
+                    <h3>Волейбол (Женская сборная)</h3>
+                    <p>
+                        <span class="trainer-name">Пирожок Наталья Михайловна</span>
+                        <span class="trainer-phone">+7 921 642 52 41</span>
+                    </p>
+                    <a href="https://vk.com/herzen_volleyball">Группа в ВК</a>
+                </div>
+                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
+                    <h3>Волейбол (Мужская сборная)</h3>
+                    <p>
+                        <span class="trainer-name">Михайлов Михаил Александрович</span>
+                        <span class="trainer-phone">+7 905 222 20 27</span>
+                    </p>
+                    <a href="https://vk.com/herzen_volleyball">Группа в ВК</a>
+                </div>
+
+                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
+                    <h3>Регби</h3>
+                    <p>
+                        <span class="trainer-name">Матвеев Дмитрий Андреевич</span>
+                        <span class="trainer-phone">+7 909 220 03 03</span>
+                    </p>
+                </div>
+
+                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
+                    <h3>Хоккей, флорбол</h3>
+                    <p>
+                        <span class="trainer-name">Иванов Андрей Васильевич</span>
+                        <span class="trainer-phone">+7 921 971 33 02</span>
+                    </p>
+                    <a href="https://vk.com/hockey.herzen">Группа в ВК</a>
+                </div>
+                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
+                    <h3>Хоккей, флорбол</h3>
+                    <p>
+                        <span class="trainer-name">Кузьмин Александр Станиславович</span>
+                        <span class="trainer-phone">+7 911 996 70 15</span>
+                    </p>
+                    <a href="https://vk.com/hockey.herzen">Группа в ВК</a>
+                </div>
+
+                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
+                    <h3>Дартс, спортивная аэробика</h3>
+                    <p>
+                        <span class="trainer-name">Кузьмина Юлия Борисовна</span>
+                        <span class="trainer-phone">+7 960 028 28 720</span>
+                    </p>
+                </div>
+
+                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
+                    <h3>Плавание, водное поло</h3>
+                    <p>
+                        <span class="trainer-name">Халиков Максим Михайлович</span>
+                        <span class="trainer-phone">+7 931 213 08 85</span>
+                    </p>
+                </div>
+
+                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
+                    <h3>Единоборства</h3>
+                    <p>Самбо, джиу-джитсу, греко-римская и вольная борьба, дзюдо.</p>
+                    <p>
+                        <span class="trainer-name">Плешивцев Михаил Викторович</span>
+                        <span class="trainer-phone">+7 911 123 00 62</span>
+                    </p>
+                    <a href="https://vk.com/sambo_in_herzen">Группа в ВК</a>
+                </div>
+
+                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
+                    <h3>Каратэ, тхэквондо</h3>
+                    <p>
+                        <span class="trainer-name">Савельев Дмитрий Сергеевич</span>
+                        <span class="trainer-phone">+7 911 227 77 11</span>
+                    </p>
+                    <a href="https://vk.com/herzenkarate">Группа в ВК</a>
+                </div>
+
+                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
+                    <h3>Бокс</h3>
+                    <p>
+                        <span class="trainer-name">Васильев Евгений Владимирович</span>
+                        <span class="trainer-phone">+7 904 637 96 96</span>
+                    </p>
+                    <a href="https://vk.com/boksgerzena">Группа в ВК</a>
+                </div>
+
+                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
+                    <h3>Шахматы</h3>
+                    <p>
+                        <span class="trainer-name">Кравченко Вячеслав Игоревич</span>
+                        <span class="trainer-phone">+7 921 313 75 55</span>
+                    </p>
+                </div>
+                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
+                    <h3>Шашки</h3>
+                    <p>
+                        <span class="trainer-name">Соколов Сергей Сергеевич</span>
+                        <span class="trainer-phone">+7 960 235 91 37</span>
+                    </p>
+                </div>
+
+                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
+                    <h3>Бальные танцы</h3>
+                    <p>
+                        <span class="trainer-name">Долгов Артём Максимович</span>
+                        <span class="trainer-phone">+7 921 774 01 57</span>
+                    </p>
+                    <a href="https://vk.com/rgpudance">Группа в ВК</a>
+                </div>
+
+                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
+                    <h3>Лыжные гонки, биатлон, полиатлон, ВФСК ГТО</h3>
+                    <p>
+                        <span class="trainer-name">Курочкин Михаил Вячеславович</span>
+                        <span class="trainer-phone">+7 911 143 56 28</span>
+                    </p>
+                </div>
+
+                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
+                    <h3>Парусный спорт, гольф-диск</h3>
+                    <p>
+                        <span class="trainer-name">Никитина Елена Сергеевна</span>
+                        <span class="trainer-phone">+7 921 787 21 91</span>
+                    </p>
+                    <a href="https://vk.com/sailingherzen">Группа в ВК</a>
+                </div>
+
+                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
+                    <h3>Гандбол, мини-лапта, горнолыжный спорт, сноуборд</h3>
+                    <p>
+                        <span class="trainer-name">Жукова Мария Александровна</span>
+                        <span class="trainer-phone">+7 918 219 70 37</span>
+                    </p>
+                </div>
+
+                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
+                    <h3>Гребной спорт</h3>
+                    <p>
+                        <span class="trainer-name">Хвоенок Михаил Владимирович</span>
+                        <span class="trainer-phone">+7 991 000 87 04</span>
+                    </p>
+                    <a href="https://vk.com/herzen_rowing">Группа в ВК</a>
+                </div>
+                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
+                    <h3>Гребной спорт</h3>
+                    <p>
+                        <span class="trainer-name">Хвоенок Ксения Александровна</span>
+                        <span class="trainer-phone">+7 965 095 55 95</span>
+                    </p>
+                    <a href="https://vk.com/herzen_rowing">Группа в ВК</a>
+                </div>
+
+                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
+                    <h3>Чир спорт</h3>
+                    <p>
+                        <span class="trainer-name">Сычкова Ирина Витальевна</span>
+                        <span class="trainer-phone">+7 911 274 38 15</span>
+                    </p>
+                    <a href="https://vk.com/cheer_herz">Группа в ВК</a>
+                </div>
+                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
+                    <h3>Группа поддержки</h3>
+                    <p>
+                        <span class="trainer-name">Чухова Ксения Михайловна</span>
+                        <span class="trainer-name">Нестерова Лилиана Сергеевна</span>
+                        <span class="trainer-phone">+7 921 398 73 89</span>
+                    </p>
+                    <a href="https://vk.com/cheer_herz">Группа в ВК</a>
+                </div>
+
+                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
+                    <h3>Художественная гимнастика</h3>
+                    <p>
+                        <span class="trainer-name">Быстрова Инна Валентиновна</span>
+                        <span class="trainer-phone">+7 921 307 27 24</span>
+                    </p>
+                    <a href="https://vk.com/herzengym">Группа в ВК</a>
+                </div>
+
+                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
+                    <h3>Бадминтон</h3>
+                    <p>
+                        <span class="trainer-name">Клименко Дмитрий</span>
+                        <span class="trainer-phone">+7 931 230 60 11</span>
+                    </p>
+                    <a href="https://vk.com/herzen_badm">Группа в ВК</a>
+                </div>
+
+                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
+                    <h3>Легкая атлетика</h3>
+                    <p>
+                        <span class="trainer-name">Сорокина Любовь Сергеевна</span>
+                        <span class="trainer-phone">+7 905 219 29 15</span>
+                    </p>
+                    <a href="https://vk.com/club199065318">Группа в ВК</a>
+                </div>
+                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
+                    <h3>Легкая атлетика</h3>
+                    <p>
+                        <span class="trainer-name">Хиленко Константин Владиславович</span>
+                        <span class="trainer-phone">+7 921 372 11 50</span>
+                    </p>
+                    <a href="https://vk.com/club199065318">Группа в ВК</a>
+                </div>
+
+                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
+                    <h3>Силовые виды спорта</h3>
+                    <p>Тяжелая атлетика, пауэрлифтинг, гиревой спорт, армрестлинг.</p>
+                    <p>
+                        <span class="trainer-name">Петров Александр Игоревич</span>
+                        <span class="trainer-phone">+7 999 214 91 65</span>
+                    </p>
+                    <a href="https://vk.com/club222576111">Группа в ВК</a>
+                </div>
+
+                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
+                    <h3>Скалолазание</h3>
+                    <p>
+                        <span class="trainer-name">Никитина Елена Сергеевна</span>
+                        <span class="trainer-phone">+7 921 787 21 91</span>
+                    </p>
+                    <a href="https://vk.com/club222835198">Группа в ВК</a>
+                </div>
+                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
+                    <h3>Скалолазание</h3>
+                    <p>
+                        <span class="trainer-name">Ефремов Николай</span>
+                        <span class="trainer-phone">+7 962 705 80 50</span>
+                    </p>
+                    <a href="https://vk.com/club222835198">Группа в ВК</a>
+                </div>
+
+                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
+                    <h3>Настольный теннис</h3>
+                    <p>
+                        <span class="trainer-name">Данилова Виктория Олеговна</span>
+                        <span class="trainer-phone">+7 911 783 06 05</span>
+                    </p>
+                </div>
+
+                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
+                    <h3>Мас-рестлинг</h3>
+                    <p>
+                        <span class="trainer-name">Емельянов Алексей Семенович</span>
+                        <span class="trainer-phone">+7 914 288 69 35</span>
+                    </p>
+                    <a href="https://vk.com/masrestlingspb">Группа в ВК</a>
+                </div>
+
+                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
+                    <h3>Фехтование, бильярд, боулинг, городошный спорт, маунтинбайк</h3>
+                    <p>Только при наличии разряда/звания</p>
+                    <p>
+                        <span class="trainer-name">Головко Андрей Александрович</span>
+                    </p>
+                    <a href="mailto:andrejgolovko@herzen.spb.ru">andrejgolovko@herzen.spb.ru</a>
+                </div>
+
+                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
+                    <h3>Спортивное ориентирование</h3>
+                    <p>
+                        <span class="trainer-name">Солодейников Михаил Александрович</span>
+                        <span class="trainer-phone">+7 921 400 10 01</span>
+                    </p>
+                </div>
+
+                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
+                    <h3>Спортивный туризм</h3>
+                    <p>
+                        <span class="trainer-name">Костин Алексей Владимирович</span>
+                        <span class="trainer-phone">+7 911 962 19 20</span>
+                    </p>
+                    <a href="https://vk.com/ct_fenix">Группа в ВК</a>
+                </div>
+
             </div>
         </div>
     </div>
