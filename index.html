@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Спорт в РГПУ им. А. И. Герцена</title>
+    <link rel="icon" type="image/png" href="icon.png">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -25,6 +26,10 @@
             padding: 0;
         }
 
+        html {
+            font-size: 17px;
+        }
+
         body {
             font-family: 'Roboto', sans-serif;
             line-height: 1.6;
@@ -35,44 +40,48 @@
 
         /* Header */
         header {
-            background-color: var(--herzen-blue);
+            background: var(--herzen-blue);
             color: var(--text-light);
-            padding: 1rem 5%;
+            padding: 0.9rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 10px 24px rgba(15, 58, 120, 0.18);
         }
 
         .logo {
-            font-size: 1.3rem;
+            font-size: 1.25rem;
             font-weight: 700;
-            letter-spacing: 0.5px;
+            letter-spacing: 0;
+            color: var(--text-light);
         }
 
         nav ul {
             list-style: none;
             display: flex;
-            gap: 25px;
+            gap: 10px;
         }
 
         nav a {
             color: var(--text-light);
             text-decoration: none;
-            font-weight: 500;
-            font-size: 1.05rem;
-            transition: color 0.3s;
-            padding-bottom: 5px;
-            border-bottom: 2px solid transparent;
+            font-weight: 600;
+            font-size: 0.98rem;
+            transition: all 0.25s;
+            padding: 10px 14px;
+            border: 1px solid transparent;
+            border-radius: 12px;
             cursor: pointer;
         }
 
         nav a:hover {
-            color: rgba(255,255,255,0.8);
-            border-bottom: 2px solid rgba(255,255,255,0.8);
+            color: var(--text-light);
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.18);
         }
 
         /* Hero Section */
@@ -173,7 +182,7 @@
         .section-title {
             text-align: center;
             color: var(--herzen-blue);
-            margin-bottom: 50px;
+            margin-bottom: 42px;
             font-size: 2.2rem;
             font-weight: 700;
             position: relative;
@@ -182,42 +191,48 @@
         .section-title::after {
             content: '';
             display: block;
-            width: 70px;
-            height: 4px;
-            background-color: var(--herzen-light-blue);
-            margin: 15px auto 0;
-            border-radius: 2px;
+            width: 58px;
+            height: 3px;
+            background: linear-gradient(90deg, #d7e6f8 0%, #bdd6f0 100%);
+            margin: 14px auto 0;
+            border-radius: 999px;
         }
 
         /* Tabs */
         .tabs {
             display: flex;
             justify-content: center;
-            margin-bottom: 40px;
-            gap: 15px;
+            margin-bottom: 34px;
+            gap: 12px;
             flex-wrap: wrap;
         }
 
         .tab-btn {
-            padding: 12px 25px;
-            background: #e9ecef;
-            color: var(--text-dark);
-            border: none;
+            padding: 12px 22px;
+            background: #f3f7fc;
+            color: #57708b;
+            border: 1px solid #dce8f5;
             cursor: pointer;
-            font-size: 1.05rem;
-            font-weight: 500;
-            border-radius: 30px;
+            font-size: 0.98rem;
+            font-weight: 600;
+            border-radius: 14px;
             transition: 0.3s;
+            box-shadow: 0 8px 18px rgba(15, 58, 120, 0.05);
         }
 
         .tab-btn:hover {
-            background: #dde1e6;
+            background: #ffffff;
+            color: var(--herzen-blue);
+            border-color: #cfe0f5;
+            box-shadow: 0 12px 24px rgba(15, 58, 120, 0.08);
         }
 
         .tab-btn.active {
-            background-color: var(--herzen-blue);
-            color: white;
-            box-shadow: 0 4px 10px rgba(0, 94, 184, 0.3);
+            background: var(--herzen-blue);
+            color: #ffffff;
+            border-color: var(--herzen-blue);
+            font-weight: 700;
+            box-shadow: 0 14px 30px rgba(15, 58, 120, 0.18);
         }
 
         .content-area {
@@ -236,17 +251,17 @@
         }
 
         .official-info-box {
-            background-color: var(--herzen-pale-bg);
-            border-left: 5px solid var(--herzen-blue);
-            padding: 20px;
+            background: linear-gradient(180deg, #f8fbff 0%, #ffffff 100%);
+            border: 1px solid #dbe8f6;
+            padding: 24px 26px;
             margin-bottom: 30px;
-            border-radius: 8px;
+            border-radius: 18px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             flex-wrap: wrap;
-            gap: 15px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            gap: 18px;
+            box-shadow: 0 12px 28px rgba(15, 58, 120, 0.08);
         }
 
         .official-info-text {
@@ -266,19 +281,21 @@
         }
 
         .official-btn {
-            background-color: var(--herzen-blue);
-            color: white;
+            background: #edf5ff;
+            color: var(--herzen-blue);
             text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 20px;
+            padding: 11px 18px;
+            border-radius: 12px;
+            border: 1px solid #d7e6fb;
             font-weight: 500;
             font-size: 0.9rem;
-            transition: background 0.3s;
+            transition: all 0.3s;
             white-space: nowrap;
         }
 
         .official-btn:hover {
-            background-color: var(--herzen-light-blue);
+            background: white;
+            box-shadow: 0 8px 18px rgba(15, 58, 120, 0.1);
         }
 
         @keyframes fadeIn {
@@ -288,20 +305,77 @@
 
         .card {
             background: white;
-            border: 1px solid #e1e5eb;
-            border-radius: 12px;
+            border: 1px solid #dbe8f6;
+            border-top: 1px solid #dbe8f6 !important;
+            border-radius: 18px;
             padding: 25px;
-            box-shadow: var(--card-shadow);
+            box-shadow: 0 10px 26px rgba(15, 58, 120, 0.08);
             transition: all 0.3s;
-            border-top: 5px solid var(--herzen-blue);
             display: flex;
             flex-direction: column;
         }
 
         .card:hover {
-            transform: translateY(-7px);
-            box-shadow: 0 8px 15px rgba(0, 94, 184, 0.15);
-            border-top-color: var(--herzen-light-blue);
+            transform: translateY(-4px);
+            box-shadow: 0 16px 32px rgba(15, 58, 120, 0.12);
+            border-color: #cfe0f5;
+            border-top-color: #cfe0f5 !important;
+        }
+
+        #sections-tab .cards-grid {
+            gap: 18px;
+        }
+
+        .section-card {
+            display: grid;
+            grid-template-columns: 86px minmax(0, 1fr);
+            grid-template-areas:
+                "icon body"
+                "icon link";
+            column-gap: 20px;
+            row-gap: 12px;
+            align-items: start;
+            align-content: start;
+            min-height: 160px;
+            padding: 18px 20px;
+        }
+
+        .section-card__icon {
+            grid-area: icon;
+            width: 86px;
+            height: 86px;
+            display: block;
+            align-self: center;
+            justify-self: center;
+            object-fit: contain;
+            object-position: center;
+        }
+
+        .section-card__body {
+            grid-area: body;
+            min-width: 0;
+            padding-top: 2px;
+        }
+
+        .section-card .section-card__body h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1.05rem;
+            line-height: 1.25;
+        }
+
+        .section-card .section-card__body p {
+            margin-bottom: 0;
+            font-size: 0.92rem;
+            line-height: 1.55;
+        }
+
+        .section-card a.section-card__link {
+            grid-area: link;
+            grid-column: 2;
+            align-self: start;
+            justify-self: start;
+            margin-top: 0;
         }
 
         .card h3 {
@@ -330,6 +404,10 @@
             font-weight: 700;
             color: var(--herzen-dark-blue);
             display: block;
+        }
+
+        .card .trainer-contact + .trainer-contact {
+            margin-top: 14px;
         }
 
         .card a {
@@ -457,6 +535,58 @@
             .section-title { font-size: 1.8rem; }
             .official-info-box { flex-direction: column; text-align: center; }
             .card { padding: 20px; }
+            .section-card {
+                grid-template-columns: 72px minmax(0, 1fr);
+                column-gap: 14px;
+                row-gap: 10px;
+                min-height: 0;
+                padding: 16px 18px;
+            }
+            .section-card__icon {
+                width: 72px;
+                height: 72px;
+                align-self: center;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .section-card {
+                grid-template-columns: 64px minmax(0, 1fr);
+                grid-template-areas:
+                    "icon body"
+                    "icon link";
+                column-gap: 14px;
+                row-gap: 10px;
+                align-items: center;
+                padding: 16px;
+            }
+
+            .section-card__icon {
+                width: 64px;
+                height: 64px;
+                align-self: center;
+                justify-self: center;
+            }
+
+            .section-card__body {
+                padding-top: 0;
+            }
+
+            .section-card .section-card__body h3 {
+                margin-bottom: 8px;
+                font-size: 1.02rem;
+            }
+
+            .section-card .section-card__body p {
+                font-size: 0.9rem;
+                line-height: 1.45;
+            }
+
+            .section-card a.section-card__link {
+                grid-column: 2;
+                justify-self: start;
+                font-size: 0.95rem;
+            }
         }
     </style>
 </head>
@@ -513,55 +643,85 @@
             </div>
 
             <div class="cards-grid">
-                <div class="card">
-                    <h3>Атлетическая гимнастика</h3>
-                    <p>Работа с весами, тренажеры, укрепление мышечного корсета и развитие силы.</p>
-                    <a href="mailto:ck_pelikan_rgpu@mail.ru">ck_pelikan_rgpu@mail.ru</a>
+                <div class="card section-card">
+                    <img class="section-card__icon" src="assets/section-icons/athletics.png" alt="" aria-hidden="true">
+                    <div class="section-card__body">
+                        <h3>Атлетическая гимнастика</h3>
+                        <p>Работа с весами, тренажеры, укрепление мышечного корсета и развитие силы.</p>
+                    </div>
+                    <a class="section-card__link" href="mailto:ck_pelikan_rgpu@mail.ru">ck_pelikan_rgpu@mail.ru</a>
                 </div>
-                <div class="card">
-                    <h3>Аэробика</h3>
-                    <p>Ритмичная гимнастика под музыку для развития выносливости и координации.</p>
-                    <a href="mailto:ck_pelikan_rgpu@mail.ru">ck_pelikan_rgpu@mail.ru</a>
+                <div class="card section-card">
+                    <img class="section-card__icon" src="assets/section-icons/aerobics.png" alt="" aria-hidden="true">
+                    <div class="section-card__body">
+                        <h3>Аэробика</h3>
+                        <p>Ритмичная гимнастика под музыку для развития выносливости и координации.</p>
+                    </div>
+                    <a class="section-card__link" href="mailto:ck_pelikan_rgpu@mail.ru">ck_pelikan_rgpu@mail.ru</a>
                 </div>
-                <div class="card">
-                    <h3>Йога</h3>
-                    <p>Гармония тела и духа, развитие гибкости, статика и дыхательные практики.</p>
-                    <a href="mailto:ck_pelikan_rgpu@mail.ru">ck_pelikan_rgpu@mail.ru</a>
+                <div class="card section-card">
+                    <img class="section-card__icon" src="assets/section-icons/yoga.png" alt="" aria-hidden="true">
+                    <div class="section-card__body">
+                        <h3>Йога</h3>
+                        <p>Гармония тела и духа, развитие гибкости, статика и дыхательные практики.</p>
+                    </div>
+                    <a class="section-card__link" href="mailto:ck_pelikan_rgpu@mail.ru">ck_pelikan_rgpu@mail.ru</a>
                 </div>
-                <div class="card">
-                    <h3>Бальные танцы</h3>
-                    <p>Эстетика движения, чувство ритма и парное взаимодействие на паркете.</p>
-                    <a href="mailto:ck_pelikan_rgpu@mail.ru">ck_pelikan_rgpu@mail.ru</a>
+                <div class="card section-card">
+                    <img class="section-card__icon" src="assets/section-icons/dance.png" alt="" aria-hidden="true">
+                    <div class="section-card__body">
+                        <h3>Бальные танцы</h3>
+                        <p>Эстетика движения, чувство ритма и парное взаимодействие на паркете.</p>
+                    </div>
+                    <a class="section-card__link" href="mailto:ck_pelikan_rgpu@mail.ru">ck_pelikan_rgpu@mail.ru</a>
                 </div>
-                <div class="card">
-                    <h3>Баскетбол</h3>
-                    <p>Командная игра, скорость и тактика.</p>
-                    <a href="mailto:ck_pelikan_rgpu@mail.ru">ck_pelikan_rgpu@mail.ru</a>
+                <div class="card section-card">
+                    <img class="section-card__icon" src="assets/section-icons/basketball.png" alt="" aria-hidden="true">
+                    <div class="section-card__body">
+                        <h3>Баскетбол</h3>
+                        <p>Командная игра, скорость и тактика.</p>
+                    </div>
+                    <a class="section-card__link" href="mailto:ck_pelikan_rgpu@mail.ru">ck_pelikan_rgpu@mail.ru</a>
                 </div>
-                <div class="card">
-                    <h3>Волейбол</h3>
-                    <p>Классическая командная игра. Развивает прыгучесть и реакцию.</p>
-                    <a href="mailto:ck_pelikan_rgpu@mail.ru">ck_pelikan_rgpu@mail.ru</a>
+                <div class="card section-card">
+                    <img class="section-card__icon" src="assets/section-icons/volleyball.png" alt="" aria-hidden="true">
+                    <div class="section-card__body">
+                        <h3>Волейбол</h3>
+                        <p>Классическая командная игра. Развивает прыгучесть и реакцию.</p>
+                    </div>
+                    <a class="section-card__link" href="mailto:ck_pelikan_rgpu@mail.ru">ck_pelikan_rgpu@mail.ru</a>
                 </div>
-                <div class="card">
-                    <h3>Настольный теннис</h3>
-                    <p>Динамичная игра на реакцию и концентрацию внимания.</p>
-                    <a href="mailto:ck_pelikan_rgpu@mail.ru">ck_pelikan_rgpu@mail.ru</a>
+                <div class="card section-card">
+                    <img class="section-card__icon" src="assets/section-icons/table-tennis.png" alt="" aria-hidden="true">
+                    <div class="section-card__body">
+                        <h3>Настольный теннис</h3>
+                        <p>Динамичная игра на реакцию и концентрацию внимания.</p>
+                    </div>
+                    <a class="section-card__link" href="mailto:ck_pelikan_rgpu@mail.ru">ck_pelikan_rgpu@mail.ru</a>
                 </div>
-                <div class="card">
-                    <h3>Каратэ</h3>
-                    <p>Секция каратэ киокусинкай в РГПУ им. Герцена работает с 2002 года.</p>
-                    <a href="mailto:ck_pelikan_rgpu@mail.ru">ck_pelikan_rgpu@mail.ru</a>
+                <div class="card section-card">
+                    <img class="section-card__icon" src="assets/section-icons/karate.png" alt="" aria-hidden="true">
+                    <div class="section-card__body">
+                        <h3>Каратэ</h3>
+                        <p>Секция каратэ киокусинкай в РГПУ им. Герцена работает с 2002 года.</p>
+                    </div>
+                    <a class="section-card__link" href="mailto:ck_pelikan_rgpu@mail.ru">ck_pelikan_rgpu@mail.ru</a>
                 </div>
-                <div class="card">
-                    <h3>Пилатес</h3>
-                    <p>Система упражнений для детальной проработки мышц и улучшения осанки.</p>
-                    <a href="mailto:ck_pelikan_rgpu@mail.ru">ck_pelikan_rgpu@mail.ru</a>
+                <div class="card section-card">
+                    <img class="section-card__icon" src="assets/section-icons/pilates.png" alt="" aria-hidden="true">
+                    <div class="section-card__body">
+                        <h3>Пилатес</h3>
+                        <p>Система упражнений для детальной проработки мышц и улучшения осанки.</p>
+                    </div>
+                    <a class="section-card__link" href="mailto:ck_pelikan_rgpu@mail.ru">ck_pelikan_rgpu@mail.ru</a>
                 </div>
-                <div class="card">
-                    <h3>Самооборона</h3>
-                    <p>Прикладные навыки защиты, уверенность в себе и базовая борьба.</p>
-                    <a href="mailto:ck_pelikan_rgpu@mail.ru">ck_pelikan_rgpu@mail.ru</a>
+                <div class="card section-card">
+                    <img class="section-card__icon" src="assets/section-icons/self-defense.png" alt="" aria-hidden="true">
+                    <div class="section-card__body">
+                        <h3>Самооборона</h3>
+                        <p>Прикладные навыки защиты, уверенность в себе и базовая борьба.</p>
+                    </div>
+                    <a class="section-card__link" href="mailto:ck_pelikan_rgpu@mail.ru">ck_pelikan_rgpu@mail.ru</a>
                 </div>
             </div>
         </div>
@@ -577,7 +737,7 @@
             </div>
 
             <div class="cards-grid">
-                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
+                <div class="card">
                     <h3>Баскетбол (Мужская сборная)</h3>
                     <p>
                         <span class="trainer-name">Полева Ольга Михайловна</span>
@@ -585,15 +745,15 @@
                     </p>
                     <a href="https://vk.com/herzen_basketball">Группа в ВК</a>
                 </div>
-                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
+                <div class="card">
                     <h3>Баскетбол (Женская сборная)</h3>
                     <p>
                         <span class="trainer-name">Никитина Елена Сергеевна</span>
-                        <span class="trainer-phone">+7 921 787 72 191</span>
+                        <span class="trainer-phone">+7 921 787 21 91</span>
                     </p>
                     <a href="https://vk.com/herzen_basketball">Группа в ВК</a>
                 </div>
-                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
+                <div class="card">
                     <h3>Баскетбол (Менеджер)</h3>
                     <p>
                         <span class="trainer-name">Жукова Мария Александровна</span>
@@ -602,7 +762,7 @@
                     <a href="https://vk.com/herzen_basketball">Группа в ВК</a>
                 </div>
 
-                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
+                <div class="card">
                     <h3>Футбол (Женская сборная)</h3>
                     <p>
                         <span class="trainer-name">Григорьев Алексей Владимирович</span>
@@ -610,7 +770,7 @@
                     </p>
                     <a href="https://vk.com/herzenfootballunion">Группа в ВК</a>
                 </div>
-                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
+                <div class="card">
                     <h3>Футбол (Мужская сборная)</h3>
                     <p>
                         <span class="trainer-name">Мызин Астемир Ратмирович</span>
@@ -619,7 +779,7 @@
                     <a href="https://vk.com/herzenfootballunion">Группа в ВК</a>
                 </div>
 
-                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
+                <div class="card">
                     <h3>Волейбол (Женская сборная)</h3>
                     <p>
                         <span class="trainer-name">Пирожок Наталья Михайловна</span>
@@ -627,7 +787,7 @@
                     </p>
                     <a href="https://vk.com/herzen_volleyball">Группа в ВК</a>
                 </div>
-                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
+                <div class="card">
                     <h3>Волейбол (Мужская сборная)</h3>
                     <p>
                         <span class="trainer-name">Михайлов Михаил Александрович</span>
@@ -636,7 +796,7 @@
                     <a href="https://vk.com/herzen_volleyball">Группа в ВК</a>
                 </div>
 
-                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
+                <div class="card">
                     <h3>Регби</h3>
                     <p>
                         <span class="trainer-name">Матвеев Дмитрий Андреевич</span>
@@ -644,42 +804,55 @@
                     </p>
                 </div>
 
-                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
+                <div class="card">
                     <h3>Хоккей, флорбол</h3>
                     <p>
-                        <span class="trainer-name">Иванов Андрей Васильевич</span>
-                        <span class="trainer-phone">+7 921 971 33 02</span>
-                    </p>
-                    <a href="https://vk.com/hockey.herzen">Группа в ВК</a>
-                </div>
-                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
-                    <h3>Хоккей, флорбол</h3>
-                    <p>
-                        <span class="trainer-name">Кузьмин Александр Станиславович</span>
-                        <span class="trainer-phone">+7 911 996 70 15</span>
+                        <span class="trainer-contact">
+                            <span class="trainer-name">Иванов Андрей Васильевич</span>
+                            <span class="trainer-phone">+7 921 971 33 02</span>
+                        </span>
+                        <span class="trainer-contact">
+                            <span class="trainer-name">Кузьмин Александр Станиславович</span>
+                            <span class="trainer-phone">+7 911 996 70 15</span>
+                        </span>
                     </p>
                     <a href="https://vk.com/hockey.herzen">Группа в ВК</a>
                 </div>
 
-                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
-                    <h3>Дартс, спортивная аэробика</h3>
+                <div class="card">
+                    <h3>Дартс</h3>
                     <p>
                         <span class="trainer-name">Кузьмина Юлия Борисовна</span>
-                        <span class="trainer-phone">+7 960 028 28 720</span>
+                        <span class="trainer-phone">+7 960 282 87 20</span>
                     </p>
                 </div>
 
-                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
-                    <h3>Плавание, водное поло</h3>
+                <div class="card">
+                    <h3>Спортивная аэробика</h3>
+                    <p>
+                        <span class="trainer-name">Кузьмина Юлия Борисовна</span>
+                        <span class="trainer-phone">+7 960 282 87 20</span>
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>Плавание</h3>
                     <p>
                         <span class="trainer-name">Халиков Максим Михайлович</span>
                         <span class="trainer-phone">+7 931 213 08 85</span>
                     </p>
                 </div>
 
-                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
-                    <h3>Единоборства</h3>
-                    <p>Самбо, джиу-джитсу, греко-римская и вольная борьба, дзюдо.</p>
+                <div class="card">
+                    <h3>Водное поло</h3>
+                    <p>
+                        <span class="trainer-name">Халиков Максим Михайлович</span>
+                        <span class="trainer-phone">+7 931 213 08 85</span>
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>Самбо</h3>
                     <p>
                         <span class="trainer-name">Плешивцев Михаил Викторович</span>
                         <span class="trainer-phone">+7 911 123 00 62</span>
@@ -687,8 +860,44 @@
                     <a href="https://vk.com/sambo_in_herzen">Группа в ВК</a>
                 </div>
 
-                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
-                    <h3>Каратэ, тхэквондо</h3>
+                <div class="card">
+                    <h3>Джиу-джитсу</h3>
+                    <p>
+                        <span class="trainer-name">Плешивцев Михаил Викторович</span>
+                        <span class="trainer-phone">+7 911 123 00 62</span>
+                    </p>
+                    <a href="https://vk.com/sambo_in_herzen">Группа в ВК</a>
+                </div>
+
+                <div class="card">
+                    <h3>Греко-римская борьба</h3>
+                    <p>
+                        <span class="trainer-name">Плешивцев Михаил Викторович</span>
+                        <span class="trainer-phone">+7 911 123 00 62</span>
+                    </p>
+                    <a href="https://vk.com/sambo_in_herzen">Группа в ВК</a>
+                </div>
+
+                <div class="card">
+                    <h3>Вольная борьба</h3>
+                    <p>
+                        <span class="trainer-name">Плешивцев Михаил Викторович</span>
+                        <span class="trainer-phone">+7 911 123 00 62</span>
+                    </p>
+                    <a href="https://vk.com/sambo_in_herzen">Группа в ВК</a>
+                </div>
+
+                <div class="card">
+                    <h3>Дзюдо</h3>
+                    <p>
+                        <span class="trainer-name">Плешивцев Михаил Викторович</span>
+                        <span class="trainer-phone">+7 911 123 00 62</span>
+                    </p>
+                    <a href="https://vk.com/sambo_in_herzen">Группа в ВК</a>
+                </div>
+
+                <div class="card">
+                    <h3>Каратэ</h3>
                     <p>
                         <span class="trainer-name">Савельев Дмитрий Сергеевич</span>
                         <span class="trainer-phone">+7 911 227 77 11</span>
@@ -696,7 +905,16 @@
                     <a href="https://vk.com/herzenkarate">Группа в ВК</a>
                 </div>
 
-                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
+                <div class="card">
+                    <h3>Тхэквондо</h3>
+                    <p>
+                        <span class="trainer-name">Савельев Дмитрий Сергеевич</span>
+                        <span class="trainer-phone">+7 911 227 77 11</span>
+                    </p>
+                    <a href="https://vk.com/herzenkarate">Группа в ВК</a>
+                </div>
+
+                <div class="card">
                     <h3>Бокс</h3>
                     <p>
                         <span class="trainer-name">Васильев Евгений Владимирович</span>
@@ -705,14 +923,14 @@
                     <a href="https://vk.com/boksgerzena">Группа в ВК</a>
                 </div>
 
-                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
+                <div class="card">
                     <h3>Шахматы</h3>
                     <p>
                         <span class="trainer-name">Кравченко Вячеслав Игоревич</span>
                         <span class="trainer-phone">+7 921 313 75 55</span>
                     </p>
                 </div>
-                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
+                <div class="card">
                     <h3>Шашки</h3>
                     <p>
                         <span class="trainer-name">Соколов Сергей Сергеевич</span>
@@ -720,7 +938,7 @@
                     </p>
                 </div>
 
-                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
+                <div class="card">
                     <h3>Бальные танцы</h3>
                     <p>
                         <span class="trainer-name">Долгов Артём Максимович</span>
@@ -729,16 +947,40 @@
                     <a href="https://vk.com/rgpudance">Группа в ВК</a>
                 </div>
 
-                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
-                    <h3>Лыжные гонки, биатлон, полиатлон, ВФСК ГТО</h3>
+                <div class="card">
+                    <h3>Лыжные гонки</h3>
                     <p>
                         <span class="trainer-name">Курочкин Михаил Вячеславович</span>
                         <span class="trainer-phone">+7 911 143 56 28</span>
                     </p>
                 </div>
 
-                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
-                    <h3>Парусный спорт, гольф-диск</h3>
+                <div class="card">
+                    <h3>Биатлон</h3>
+                    <p>
+                        <span class="trainer-name">Курочкин Михаил Вячеславович</span>
+                        <span class="trainer-phone">+7 911 143 56 28</span>
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>Полиатлон</h3>
+                    <p>
+                        <span class="trainer-name">Курочкин Михаил Вячеславович</span>
+                        <span class="trainer-phone">+7 911 143 56 28</span>
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>ВФСК ГТО</h3>
+                    <p>
+                        <span class="trainer-name">Курочкин Михаил Вячеславович</span>
+                        <span class="trainer-phone">+7 911 143 56 28</span>
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>Парусный спорт</h3>
                     <p>
                         <span class="trainer-name">Никитина Елена Сергеевна</span>
                         <span class="trainer-phone">+7 921 787 21 91</span>
@@ -746,50 +988,86 @@
                     <a href="https://vk.com/sailingherzen">Группа в ВК</a>
                 </div>
 
-                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
-                    <h3>Гандбол, мини-лапта, горнолыжный спорт, сноуборд</h3>
+                <div class="card">
+                    <h3>Гольф-диск</h3>
+                    <p>
+                        <span class="trainer-name">Никитина Елена Сергеевна</span>
+                        <span class="trainer-phone">+7 921 787 21 91</span>
+                    </p>
+                    <a href="https://vk.com/sailingherzen">Группа в ВК</a>
+                </div>
+
+                <div class="card">
+                    <h3>Гандбол</h3>
                     <p>
                         <span class="trainer-name">Жукова Мария Александровна</span>
                         <span class="trainer-phone">+7 918 219 70 37</span>
                     </p>
                 </div>
 
-                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
-                    <h3>Гребной спорт</h3>
+                <div class="card">
+                    <h3>Мини-лапта</h3>
                     <p>
-                        <span class="trainer-name">Хвоенок Михаил Владимирович</span>
-                        <span class="trainer-phone">+7 991 000 87 04</span>
+                        <span class="trainer-name">Жукова Мария Александровна</span>
+                        <span class="trainer-phone">+7 918 219 70 37</span>
                     </p>
-                    <a href="https://vk.com/herzen_rowing">Группа в ВК</a>
                 </div>
-                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
+
+                <div class="card">
+                    <h3>Горнолыжный спорт</h3>
+                    <p>
+                        <span class="trainer-name">Жукова Мария Александровна</span>
+                        <span class="trainer-phone">+7 918 219 70 37</span>
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>Сноуборд</h3>
+                    <p>
+                        <span class="trainer-name">Жукова Мария Александровна</span>
+                        <span class="trainer-phone">+7 918 219 70 37</span>
+                    </p>
+                </div>
+
+                <div class="card">
                     <h3>Гребной спорт</h3>
                     <p>
-                        <span class="trainer-name">Хвоенок Ксения Александровна</span>
-                        <span class="trainer-phone">+7 965 095 55 95</span>
+                        <span class="trainer-contact">
+                            <span class="trainer-name">Хвоенок Михаил Владимирович</span>
+                            <span class="trainer-phone">+7 991 000 87 04</span>
+                        </span>
+                        <span class="trainer-contact">
+                            <span class="trainer-name">Хвоенок Ксения Александровна</span>
+                            <span class="trainer-phone">+7 965 095 55 95</span>
+                        </span>
                     </p>
                     <a href="https://vk.com/herzen_rowing">Группа в ВК</a>
                 </div>
 
-                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
-                    <h3>Чир спорт</h3>
+                <div class="card">
+                    <h3>Чир. спорт</h3>
                     <p>
                         <span class="trainer-name">Сычкова Ирина Витальевна</span>
                         <span class="trainer-phone">+7 911 274 38 15</span>
                     </p>
                     <a href="https://vk.com/cheer_herz">Группа в ВК</a>
                 </div>
-                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
+                <div class="card">
                     <h3>Группа поддержки</h3>
                     <p>
-                        <span class="trainer-name">Чухова Ксения Михайловна</span>
-                        <span class="trainer-name">Нестерова Лилиана Сергеевна</span>
-                        <span class="trainer-phone">+7 921 398 73 89</span>
+                        <span class="trainer-contact">
+                            <span class="trainer-name">Чухова Ксения Михайловна</span>
+                            <span class="trainer-phone">+7 921 398 73 89</span>
+                        </span>
+                        <span class="trainer-contact">
+                            <span class="trainer-name">Нестерова Лилиана Сергеевна</span>
+                            <span class="trainer-phone">+7 921 398 73 89</span>
+                        </span>
                     </p>
                     <a href="https://vk.com/cheer_herz">Группа в ВК</a>
                 </div>
 
-                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
+                <div class="card">
                     <h3>Художественная гимнастика</h3>
                     <p>
                         <span class="trainer-name">Быстрова Инна Валентиновна</span>
@@ -798,7 +1076,7 @@
                     <a href="https://vk.com/herzengym">Группа в ВК</a>
                 </div>
 
-                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
+                <div class="card">
                     <h3>Бадминтон</h3>
                     <p>
                         <span class="trainer-name">Клименко Дмитрий</span>
@@ -807,26 +1085,23 @@
                     <a href="https://vk.com/herzen_badm">Группа в ВК</a>
                 </div>
 
-                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
+                <div class="card">
                     <h3>Легкая атлетика</h3>
                     <p>
-                        <span class="trainer-name">Сорокина Любовь Сергеевна</span>
-                        <span class="trainer-phone">+7 905 219 29 15</span>
-                    </p>
-                    <a href="https://vk.com/club199065318">Группа в ВК</a>
-                </div>
-                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
-                    <h3>Легкая атлетика</h3>
-                    <p>
-                        <span class="trainer-name">Хиленко Константин Владиславович</span>
-                        <span class="trainer-phone">+7 921 372 11 50</span>
+                        <span class="trainer-contact">
+                            <span class="trainer-name">Сорокина Любовь Сергеевна</span>
+                            <span class="trainer-phone">+7 905 219 29 15</span>
+                        </span>
+                        <span class="trainer-contact">
+                            <span class="trainer-name">Хиленко Константин Владиславович</span>
+                            <span class="trainer-phone">+7 921 372 11 50</span>
+                        </span>
                     </p>
                     <a href="https://vk.com/club199065318">Группа в ВК</a>
                 </div>
 
-                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
-                    <h3>Силовые виды спорта</h3>
-                    <p>Тяжелая атлетика, пауэрлифтинг, гиревой спорт, армрестлинг.</p>
+                <div class="card">
+                    <h3>Тяжелая атлетика</h3>
                     <p>
                         <span class="trainer-name">Петров Александр Игоревич</span>
                         <span class="trainer-phone">+7 999 214 91 65</span>
@@ -834,24 +1109,47 @@
                     <a href="https://vk.com/club222576111">Группа в ВК</a>
                 </div>
 
-                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
-                    <h3>Скалолазание</h3>
+                <div class="card">
+                    <h3>Пауэрлифтинг</h3>
                     <p>
-                        <span class="trainer-name">Никитина Елена Сергеевна</span>
-                        <span class="trainer-phone">+7 921 787 21 91</span>
+                        <span class="trainer-name">Петров Александр Игоревич</span>
+                        <span class="trainer-phone">+7 999 214 91 65</span>
                     </p>
-                    <a href="https://vk.com/club222835198">Группа в ВК</a>
+                    <a href="https://vk.com/club222576111">Группа в ВК</a>
                 </div>
-                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
+                <div class="card">
+                    <h3>Гиревой спорт</h3>
+                    <p>
+                        <span class="trainer-name">Петров Александр Игоревич</span>
+                        <span class="trainer-phone">+7 999 214 91 65</span>
+                    </p>
+                    <a href="https://vk.com/club222576111">Группа в ВК</a>
+                </div>
+                <div class="card">
+                    <h3>Армрестлинг</h3>
+                    <p>
+                        <span class="trainer-name">Петров Александр Игоревич</span>
+                        <span class="trainer-phone">+7 999 214 91 65</span>
+                    </p>
+                    <a href="https://vk.com/club222576111">Группа в ВК</a>
+                </div>
+
+                <div class="card">
                     <h3>Скалолазание</h3>
                     <p>
-                        <span class="trainer-name">Ефремов Николай</span>
-                        <span class="trainer-phone">+7 962 705 80 50</span>
+                        <span class="trainer-contact">
+                            <span class="trainer-name">Никитина Елена Сергеевна</span>
+                            <span class="trainer-phone">+7 921 787 21 91</span>
+                        </span>
+                        <span class="trainer-contact">
+                            <span class="trainer-name">Ефремов Николай</span>
+                            <span class="trainer-phone">+7 962 705 80 50</span>
+                        </span>
                     </p>
                     <a href="https://vk.com/club222835198">Группа в ВК</a>
                 </div>
 
-                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
+                <div class="card">
                     <h3>Настольный теннис</h3>
                     <p>
                         <span class="trainer-name">Данилова Виктория Олеговна</span>
@@ -859,7 +1157,7 @@
                     </p>
                 </div>
 
-                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
+                <div class="card">
                     <h3>Мас-рестлинг</h3>
                     <p>
                         <span class="trainer-name">Емельянов Алексей Семенович</span>
@@ -868,8 +1166,8 @@
                     <a href="https://vk.com/masrestlingspb">Группа в ВК</a>
                 </div>
 
-                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
-                    <h3>Фехтование, бильярд, боулинг, городошный спорт, маунтинбайк</h3>
+                <div class="card">
+                    <h3>Фехтование</h3>
                     <p>Только при наличии разряда/звания</p>
                     <p>
                         <span class="trainer-name">Головко Андрей Александрович</span>
@@ -877,7 +1175,43 @@
                     <a href="mailto:andrejgolovko@herzen.spb.ru">andrejgolovko@herzen.spb.ru</a>
                 </div>
 
-                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
+                <div class="card">
+                    <h3>Бильярд</h3>
+                    <p>Только при наличии разряда/звания</p>
+                    <p>
+                        <span class="trainer-name">Головко Андрей Александрович</span>
+                    </p>
+                    <a href="mailto:andrejgolovko@herzen.spb.ru">andrejgolovko@herzen.spb.ru</a>
+                </div>
+
+                <div class="card">
+                    <h3>Боулинг</h3>
+                    <p>Только при наличии разряда/звания</p>
+                    <p>
+                        <span class="trainer-name">Головко Андрей Александрович</span>
+                    </p>
+                    <a href="mailto:andrejgolovko@herzen.spb.ru">andrejgolovko@herzen.spb.ru</a>
+                </div>
+
+                <div class="card">
+                    <h3>Городошный спорт</h3>
+                    <p>Только при наличии разряда/звания</p>
+                    <p>
+                        <span class="trainer-name">Головко Андрей Александрович</span>
+                    </p>
+                    <a href="mailto:andrejgolovko@herzen.spb.ru">andrejgolovko@herzen.spb.ru</a>
+                </div>
+
+                <div class="card">
+                    <h3>Маунтинбайк</h3>
+                    <p>Только при наличии разряда/звания</p>
+                    <p>
+                        <span class="trainer-name">Головко Андрей Александрович</span>
+                    </p>
+                    <a href="mailto:andrejgolovko@herzen.spb.ru">andrejgolovko@herzen.spb.ru</a>
+                </div>
+
+                <div class="card">
                     <h3>Спортивное ориентирование</h3>
                     <p>
                         <span class="trainer-name">Солодейников Михаил Александрович</span>
@@ -885,7 +1219,7 @@
                     </p>
                 </div>
 
-                <div class="card" style="border-top-color: var(--herzen-dark-blue);">
+                <div class="card">
                     <h3>Спортивный туризм</h3>
                     <p>
                         <span class="trainer-name">Костин Алексей Владимирович</span>
@@ -925,7 +1259,7 @@
     </div>
 
     <footer>
-        <p class="copy">© 2025 РГПУ им. А. И. Герцена.</p>
+        <p class="copy">© 2026 РГПУ им. А. И. Герцена.</p>
         <p style="opacity: 0.7;">Санкт-Петербург, наб. реки Мойки, 48</p>
     </footer>
 
