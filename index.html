@@ -1343,6 +1343,21 @@
             }
         }
 
+        function sortCardsAlphabetically(tabId) {
+            const tab = document.getElementById(tabId);
+            const grid = tab?.querySelector('.cards-grid');
+            if (!grid) return;
+
+            const cards = Array.from(grid.children).filter(card => card.classList.contains('card'));
+            cards
+                .sort((cardA, cardB) => {
+                    const titleA = cardA.querySelector('h3')?.textContent.trim() ?? '';
+                    const titleB = cardB.querySelector('h3')?.textContent.trim() ?? '';
+                    return titleA.localeCompare(titleB, 'ru', { sensitivity: 'base' });
+                })
+                .forEach(card => grid.appendChild(card));
+        }
+
         // --- Logic for Quiz ---
         const questions = [
             {
@@ -1427,6 +1442,8 @@
             loadQuestion();
         }
 
+        sortCardsAlphabetically('sections-tab');
+        sortCardsAlphabetically('teams-tab');
         loadQuestion();
     </script>
 </body>
