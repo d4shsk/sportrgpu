@@ -302,6 +302,47 @@
             box-shadow: 0 8px 18px rgba(15, 58, 120, 0.1);
         }
 
+        .search-panel {
+            margin-bottom: 24px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 14px 18px;
+            border: 1px solid #d7e6fb;
+            border-radius: 14px;
+            background: #f8fbff;
+            color: var(--text-dark);
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.25s, box-shadow 0.25s, background-color 0.25s;
+        }
+
+        .search-input::placeholder {
+            color: #7f96ad;
+        }
+
+        .search-input:focus {
+            background: #ffffff;
+            border-color: #aac7ec;
+            box-shadow: 0 0 0 4px rgba(0, 94, 184, 0.12);
+        }
+
+        .search-empty {
+            display: none;
+            margin-top: 22px;
+            padding: 20px 22px;
+            border: 1px dashed #c9dbf0;
+            border-radius: 18px;
+            background: #f8fbff;
+            color: #57708b;
+            text-align: center;
+        }
+
+        .search-empty.visible {
+            display: block;
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
@@ -324,6 +365,10 @@
             box-shadow: 0 16px 32px rgba(15, 58, 120, 0.12);
             border-color: #cfe0f5;
             border-top-color: #cfe0f5 !important;
+        }
+
+        .card[hidden] {
+            display: none !important;
         }
 
         #sections-tab .cards-grid {
@@ -693,6 +738,16 @@
                 <a href="https://www.herzen.spb.ru/about/sportivnaya-deyatelnost/sportivno-ozdorovitelnyy-tsentr/" target="_blank" class="official-btn">Перейти на сайт центра →</a>
             </div>
 
+            <div class="search-panel">
+                <input
+                    id="sections-search"
+                    class="search-input"
+                    type="search"
+                    placeholder="Поиск по секциям: название, описание"
+                    aria-label="Поиск по секциям"
+                >
+            </div>
+
             <div class="cards-grid">
                 <div class="card section-card">
                     <img class="section-card__icon" src="assets/section-icons/athletics.png" alt="" aria-hidden="true">
@@ -775,6 +830,7 @@
                     <a class="section-card__link" href="mailto:ck_pelikan_rgpu@mail.ru">ck_pelikan_rgpu@mail.ru</a>
                 </div>
             </div>
+            <div id="sections-empty" class="search-empty" aria-live="polite">Ничего не найдено. Попробуйте изменить запрос.</div>
         </div>
 
         <div id="teams-tab" class="content-area">
@@ -785,6 +841,16 @@
                     <p>Информация о сборных командах, достижениях и спортивных мероприятиях вуза.</p>
                 </div>
                 <a href="https://www.herzen.spb.ru/about/struct-uni/other-podr/sportivnyy-klub-pelikan/" target="_blank" class="official-btn">Страница спортклуба →</a>
+            </div>
+
+            <div class="search-panel">
+                <input
+                    id="teams-search"
+                    class="search-input"
+                    type="search"
+                    placeholder="Поиск по сборным: вид спорта, тренер, контакты"
+                    aria-label="Поиск по сборным"
+                >
             </div>
 
             <div class="cards-grid">
@@ -1280,6 +1346,7 @@
                 </div>
 
             </div>
+            <div id="teams-empty" class="search-empty" aria-live="polite">Ничего не найдено. Попробуйте изменить запрос.</div>
         </div>
     </div>
 
@@ -1345,17 +1412,55 @@
 
         function sortCardsAlphabetically(tabId) {
             const tab = document.getElementById(tabId);
-            const grid = tab?.querySelector('.cards-grid');
+            const grid = tab ? tab.querySelector('.cards-grid') : null;
             if (!grid) return;
 
             const cards = Array.from(grid.children).filter(card => card.classList.contains('card'));
             cards
                 .sort((cardA, cardB) => {
-                    const titleA = cardA.querySelector('h3')?.textContent.trim() ?? '';
-                    const titleB = cardB.querySelector('h3')?.textContent.trim() ?? '';
+                    const titleNodeA = cardA.querySelector('h3');
+                    const titleNodeB = cardB.querySelector('h3');
+                    const titleA = titleNodeA ? titleNodeA.textContent.trim() : '';
+                    const titleB = titleNodeB ? titleNodeB.textContent.trim() : '';
                     return titleA.localeCompare(titleB, 'ru', { sensitivity: 'base' });
                 })
                 .forEach(card => grid.appendChild(card));
+        }
+
+        function normalizeSearchText(value) {
+            return value
+                .toLowerCase()
+                .replace(/\s+/g, ' ')
+                .trim();
+        }
+
+        function setupCardSearch(tabId, inputId, emptyId) {
+            const tab = document.getElementById(tabId);
+            const input = document.getElementById(inputId);
+            const emptyState = document.getElementById(emptyId);
+            const cards = tab ? Array.from(tab.querySelectorAll('.cards-grid .card')) : [];
+
+            if (!tab || !input || !emptyState || cards.length === 0) return;
+
+            cards.forEach(card => {
+                card.dataset.searchText = normalizeSearchText(card.textContent || '');
+            });
+
+            const applyFilter = () => {
+                const query = normalizeSearchText(input.value);
+                let visibleCount = 0;
+
+                cards.forEach(card => {
+                    const matches = query === '' || card.dataset.searchText.includes(query);
+                    card.hidden = !matches;
+                    if (matches) visibleCount += 1;
+                });
+
+                emptyState.classList.toggle('visible', visibleCount === 0);
+            };
+
+            input.addEventListener('input', applyFilter);
+            applyFilter();
         }
 
         // --- Logic for Quiz ---
@@ -1444,6 +1549,8 @@
 
         sortCardsAlphabetically('sections-tab');
         sortCardsAlphabetically('teams-tab');
+        setupCardSearch('sections-tab', 'sections-search', 'sections-empty');
+        setupCardSearch('teams-tab', 'teams-search', 'teams-empty');
         loadQuestion();
     </script>
 </body>
