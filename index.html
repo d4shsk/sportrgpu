@@ -78,6 +78,10 @@
             cursor: pointer;
         }
 
+        .nav-label-short {
+            display: none;
+        }
+
         nav a:hover {
             color: var(--text-light);
             background: rgba(255, 255, 255, 0.12);
@@ -527,14 +531,46 @@
 
             header {
                 flex-direction: column;
-                gap: 15px;
-                padding: 15px;
+                gap: 6px;
+                padding: 8px 10px;
+                align-items: stretch;
             }
+
+            .logo {
+                font-size: 0.9rem;
+                line-height: 1.1;
+                text-align: center;
+            }
+
+            nav {
+                width: 100%;
+            }
+
             nav ul {
-                gap: 15px;
-                flex-wrap: wrap;
-                justify-content: center;
+                width: 100%;
+                display: grid;
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+                gap: 2px;
+                align-items: stretch;
             }
+
+            nav a {
+                display: block;
+                text-align: center;
+                padding: 5px 2px;
+                font-size: 0.8rem;
+                line-height: 1.1;
+                border-radius: 8px;
+            }
+
+            .nav-label-full {
+                display: none;
+            }
+
+            .nav-label-short {
+                display: inline;
+            }
+
             .hero h1 { font-size: 2rem; }
             .section-title { font-size: 1.8rem; }
             .official-info-box { flex-direction: column; text-align: center; }
@@ -550,6 +586,17 @@
                 width: 72px;
                 height: 72px;
                 align-self: center;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .logo {
+                font-size: 0.8rem;
+            }
+
+            nav a {
+                font-size: 0.74rem;
+                padding: 4px 1px;
             }
         }
 
@@ -603,7 +650,7 @@
                 <li><a href="#sections" onclick="openTab('sections-tab')">Секции</a></li>
                 <li><a href="#sections" onclick="openTab('teams-tab')">Сборные</a></li>
                 <li><a href="#map">Карта</a></li>
-                <li><a href="#quiz">Пройти тест</a></li>
+                <li><a href="#quiz"><span class="nav-label-full">Пройти тест</span><span class="nav-label-short">Тест</span></a></li>
             </ul>
         </nav>
     </header>
